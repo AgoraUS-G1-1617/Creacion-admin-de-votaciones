@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- * PopulateDatabase.xml * * Copyright (C) 2014 Universidad de Sevilla 
+	* * The use of this project is hereby constrained to the conditions of the 
+	* TDG Licence, a copy of which you may download from * http://www.tdg-seville.info/License.html -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+
+	<!-- Surveys -->
+	<bean id="survey1" class="domain.Survey">
+		<property name="title" value="Verde" />
+		<property name="description" value="asdasdfisdgudsbfdysb" />
+		<property name="startDate" value="2016/05/02 12:00" />
+		<property name="endDate" value="2016/06/02 12:00" />
+		<property name="tipo" value="Cerrado" />
+		<property name="census" value="1" />
+		<property name="usernameCreator" value="Verde1" />
+		<property name="questions">
+			<list>
+				<ref bean="question1" />
+
+			</list>
+
+		</property>
+
+	<!-- Questions -->
+	</bean>
+	<bean id="question1" class="domain.Question">
+		<property name="text" value="yatusabe?" />
+
+	</bean>
+
+
+	<bean id="question2" class="domain.Question">
+		<property name="text" value="pregunta sin asignar??" />
+	</bean>
+
+</beans>

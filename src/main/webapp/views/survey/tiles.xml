@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="vote/list" extends="master.page">
+		<put-attribute name="title" value="Surveys" />
+		<put-attribute name="body" value="/views/survey/list.jsp" />
+	</definition>
+	
+	<definition name="vote/details" extends="master.page">
+		<put-attribute name="title" value="Survey's details" />
+		<put-attribute name="body" value="/views/survey/details.jsp" />
+	</definition>
+	
+	<definition name="vote/create" extends="master.page">
+		<put-attribute name="title" value="Create Survey" />
+		<put-attribute name="body" value="/views/survey/create.jsp" />
+	</definition>
+	
+	<definition name="vote/addQuestion" extends="master.page">
+		<put-attribute name="title" value="Add question" />
+		<put-attribute name="body" value="/views/survey/addQuestion.jsp" />
+	</definition>
+</tiles-definitions>

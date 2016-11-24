@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- * tiles.xml * * Copyright (C) 2013 Universidad de Sevilla * * The use 
+	of this project is hereby constrained to the conditions of the * TDG Licence, 
+	a copy of which you may download from * http://www.tdg-seville.info/License.html -->
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="vote/list" extends="master.page">
+		<put-attribute name="title" value="Lista de votaciones" />
+		<put-attribute name="body" value="/views/survey/list.jsp" />
+	</definition>
+	
+	<definition name="vote/details" extends="master.page">
+		<put-attribute name="title" value="Detalles de la votación" />
+		<put-attribute name="body" value="/views/survey/details.jsp" />
+	</definition>
+	
+	<definition name="vote/create" extends="master.page">
+		<put-attribute name="title" value="Crear Votacion" />
+		<put-attribute name="body" value="/views/survey/create.jsp" />
+	</definition>
+	
+	<definition name="vote/addQuestion" extends="master.page">
+		<put-attribute name="title" value="Añadir pregunta" />
+		<put-attribute name="body" value="/views/survey/addQuestion.jsp" />
+	</definition>
+	
+</tiles-definitions>

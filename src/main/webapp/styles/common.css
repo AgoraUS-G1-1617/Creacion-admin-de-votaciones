@@ -1,0 +1,109 @@
+/* common.css
+ *
+ * Copyright (C) 2014 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ * 
+ */
+
+h1 {
+	font: white;
+	font-family: fantasy;
+	font-style: italic;
+}
+
+th {
+	background-color: #483D8B;
+	color: white;
+}
+
+/* a {
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	background-color: #CCCCCC;
+	text-decoration: none;
+	color: #000000;
+	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0
+		rgba(0, 0, 0, 0.19);
+}
+ */
+ a {  
+ text-decoration: none;
+  background: #EEE;
+  color: #222;
+  border: 1px outset #CCC;
+  padding: .1em .5em;
+  
+  
+  }
+  
+.wide #content-secondary {
+	width: 272px;
+	margin: 13px 0 0 0;
+	position: relative;
+	margin-left: -8px;
+	background: url("./graphics/wide/bg-content-secondary.gif") repeat-y;
+}
+
+p {
+	padding-top: 50px;
+	padding-right: 30px;
+	padding-bottom: 50px;
+	padding-left: 80px;
+}
+
+body {
+/* 	margin: 0;
+	padding: 0;
+	background: #191E1A;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #FCFFFD; */
+	 background-image: url(http://fondopantalla.com.es/file/421/1440x900/crop/fondo-de-pantalla-degradado-azul.jpg);
+}
+
+button{
+	
+	background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+	
+}
+
+label {
+  display: block;
+  margin: .5em 0 0 0;
+}
+div.centro{
+	text-align: center;
+}
+div.texto{
+	font-family:Arial;
+	font-size:20px;
+}
+input:focus {
+  border: 2px solid #000;
+  background: #F3F3F3;
+}
+
+fieldset {
+border:5px groove #000; /*borde*/
+ /*color de fondo*/
+margin-left:40%;
+margin-right:40%;
+color:#000; /*Color del texto de todo el contenido*/
+}
+legend {
+	
+text-align:center; /*Puedes cambiarlo por center o right*/
+font-size:40px; /*Estilo de la fuente del título*/
+color:#61380B; /*Color del título*/
+} 
