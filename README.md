@@ -1,9 +1,9 @@
-<h1>Creación y Administración de Votaciones.</h1>
+<h1>CreaciÃ³n y AdministraciÃ³n de Votaciones.</h1>
 <ul>
-<li>Alejanddro Ballesteros Martín</li>
-<li>Rafael Carbonell García</li>
-<li>Manuel Rueda López</li>
-<li>Pablo Sánchez Alonso (Coordinador)</li>
-<li>Juan Jesús Vázquez Rodríguez</li>
+<li>Rafael Trujillo GonzÃ¡lez: Project Manager</li>
+<li>Ismael de la Ossa Puerto: Software Developer</li>
+<li>Armando Garrido Castro: Software Developer</li>
+<li>Javier PallarÃ©s Saavedra: Software Developer</li>
+<li>Alejandro Tortolero Niza: Software Developer</li>
 
 </ul>
