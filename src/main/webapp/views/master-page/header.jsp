@@ -14,7 +14,15 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
-
+<div>
+	<img src="images/vota.png" alt="Creación y Administración de votaciones" />
+	<div class="lenguajes">
+		<a href="?language=en"><img src="images/en.png" alt="English"
+			height="30" width="50" /></a> <a href="?language=es"><img
+			src="images/es.png" alt="Español" height="30" width="50" /></a>
+	</div>
+</div>
+<br/>
 <div>
 
 	<ul id="jMenu">
@@ -24,23 +32,21 @@
 
 
 
-				<li class="arrow"></li>
-				<li><a class="fNiv" href="vote/list.do"><spring:message
-							code="master.page.list" /></a></li>
+		<li class="arrow"></li>
+		<li><a class="fNiv" href="vote/list.do"><spring:message
+					code="master.page.list" /></a></li>
 
 
 
-				<li><a href="vote/create.do"><spring:message
-							code="master.page.create">
-						</spring:message></a></li>
+		<li><a href="vote/create.do"><spring:message
+					code="master.page.create">
+				</spring:message></a></li>
 
-				<li><a href="../ADMCensus"><spring:message
-							code="master.page.censo">
-						</spring:message></a></li>
-</ul>
+		<li><a href="../ADMCensus"><spring:message
+					code="master.page.censo">
+				</spring:message></a></li>
+	</ul>
 </div>
-</br>
-<a href="?language=en">En</a> | <a href="?language=es">Es</a>
 
 
 

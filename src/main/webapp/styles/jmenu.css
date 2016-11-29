@@ -7,7 +7,6 @@
  * http://www.tdg-seville.info/License.html
  * 
  */
-
 .jMenu {
 	display: table;
 	margin: 0px;
@@ -15,7 +14,6 @@
 }
 
 /* First level */
-
 .jMenu li {
 	display: table-cell;
 	background-color: #322f32;
@@ -34,7 +32,6 @@
 }
 
 /* Lower levels */
-
 .jMenu li ul {
 	display: none;
 	position: absolute;
@@ -84,4 +81,8 @@
 	border-top: 1px solid #322f32;
 	border-bottom: 1px solid #322f32;
 	text-decoration: none;
+}
+
+.lenguajes {
+	float: right;
 }

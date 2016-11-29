@@ -57,7 +57,8 @@ public class WelcomeController extends AbstractController {
 	public ModelAndView aboutUs() {
 		ModelAndView result;
 		result = new ModelAndView("welcome/aboutus");
-
+		boolean about= true;
+		result.addObject("about",about);
 		result.addObject("requestURI", "welcome/aboutus");
 		return result;
 
