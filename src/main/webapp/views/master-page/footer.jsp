@@ -24,7 +24,7 @@
 
 <jsp:useBean id="date" class="java.util.Date" />
 
-<hr />
+<hr class="linea"/>
 <div>
 	<jstl:if test="${about!=true}">
 
