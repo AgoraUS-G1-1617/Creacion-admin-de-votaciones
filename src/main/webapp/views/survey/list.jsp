@@ -12,8 +12,8 @@
 
 
 <br>
-	<display:table name="surveis" id="row"
-		requestURI="survey/list.do" class="displaytag">
+	<display:table pagesize="5" class="displaytag" keepStatus="true"
+	name="surveys" requestURI="survey/list.do" id="row">
 		<display:column titleKey="survey.details">
 			<a href="survey/details.do?surveyId=${row.id}"> <spring:message
 					code="survey.details" />

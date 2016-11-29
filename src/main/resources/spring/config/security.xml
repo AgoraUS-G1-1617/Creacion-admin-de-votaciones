@@ -44,6 +44,7 @@
 		<security:intercept-url pattern="/security/loginFailure.do" access="permitAll" /> 
 
 		<security:intercept-url pattern="/welcome/index.do" access="permitAll" /> 
+		<security:intercept-url pattern="/survey/list.do" access="permitAll" /> 
 
 	
 		<security:intercept-url pattern="/**" access="hasRole('NONE')" />

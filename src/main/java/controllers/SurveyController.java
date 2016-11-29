@@ -55,20 +55,27 @@ public class SurveyController {
 	 * @return Este método devuelve el modelo de vista con el listado de
 	 *         votaciones.
 	 */
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list(@CookieValue("user") String user) {
-		ModelAndView result;
-		System.out.println(user);
-		Collection<Survey> surveis;
-		surveis = surveyService.allCreatedSurveys(user);
-		System.out.println( surveis);
-		Date now = new Date(System.currentTimeMillis() - 1000);
-		result = new ModelAndView("vote/list");
-		result.addObject("surveis", surveis);
-		result.addObject("hoy", now);
+	
+	
+	//No funciona, creemos que debido al @CookieValue
+	
+//	@RequestMapping(value = "/list", method = RequestMethod.GET)
+//	public ModelAndView list(@CookieValue("user") String user) {
+//		ModelAndView result;
+//		Collection<Survey> surveys;
+//		System.out.println(user);
+//		surveys = surveyService.allCreatedSurveys(user);
+//		System.out.println(surveys);
+//		Date now = new Date(System.currentTimeMillis() - 1000);
+//		result = new ModelAndView("survey/list");
+//		result.addObject("surveys", surveys);
+//		result.addObject("requestURI", "survey/list.do");
+//		result.addObject("hoy", now);
+//
+//		return result;
+//	}
+	
 
-		return result;
-	}
 
 	// Creation ------------------------------------------
 	/**
@@ -376,8 +383,24 @@ public class SurveyController {
 	}
 	
 	
-	//CODIGO ENTENDIBLE Y USABLE 2016/17 -----
 	
+	 //////////////////////////////////////////
+	//  CODIGO ENTENDIBLE Y USABLE 2016/17  //
+   //////////////////////////////////////////
+	
+	
+	
+	@RequestMapping(value="/list", method = RequestMethod.GET)
+	public ModelAndView list() {
+		ModelAndView result;
+		Collection<Survey> surveys;
+		surveys= surveyService.allSurveys();
+		result = new ModelAndView("survey/list");
+		result.addObject("surveys", surveys);
+		result.addObject("requestURI", "survey/list.do");
+		return result;
+	}
+
 
 
 }

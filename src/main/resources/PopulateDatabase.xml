@@ -12,8 +12,8 @@
 
 	<!-- Surveys -->
 	<bean id="survey1" class="domain.Survey">
-		<property name="title" value="Verde" />
-		<property name="description" value="asdasdfisdgudsbfdysb" />
+		<property name="title" value="Encuesta futbolística en Sevilla" />
+		<property name="description" value="Indaga sobre las preferencias de los ciudadanos en los equipos de la ciudad" />
 		<property name="startDate" value="2016/05/02 12:00" />
 		<property name="endDate" value="2016/06/02 12:00" />
 		<property name="tipo" value="Cerrado" />
@@ -22,6 +22,8 @@
 		<property name="questions">
 			<list>
 				<ref bean="question1" />
+				<ref bean="question2" />
+				<ref bean="question3" />
 
 			</list>
 
@@ -30,13 +32,17 @@
 	<!-- Questions -->
 	</bean>
 	<bean id="question1" class="domain.Question">
-		<property name="text" value="yatusabe?" />
+		<property name="text" value="¿Cual es su equipo de fútbol favorito?" />
 
 	</bean>
 
 
 	<bean id="question2" class="domain.Question">
-		<property name="text" value="pregunta sin asignar??" />
+		<property name="text" value="¿Prefiere a Sevilla o Betis?" />
+	</bean>
+	
+	<bean id="question3" class="domain.Question">
+		<property name="text" value="¿Tiene problemas mentales?" />
 	</bean>
 
 </beans>
