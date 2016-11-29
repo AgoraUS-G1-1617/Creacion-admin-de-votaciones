@@ -33,8 +33,12 @@ th {
 	text-decoration: none;
 	background: #EEE;
 	color: #222;
-	border: 1px outset #CCC;
+	border: 1px outset #0040FF;
 	padding: .1em .5em;
+}
+
+img {
+	border: 1px solid #0040FF;
 }
 
 .wide #content-secondary {
@@ -50,6 +54,7 @@ p {
 	padding-right: 30px;
 	padding-bottom: 50px;
 	padding-left: 80px;
+	font-family: "Homer Simpson", cursive;
 }
 
 body { /* 	margin: 0;
