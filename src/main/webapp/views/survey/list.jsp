@@ -13,9 +13,9 @@
 
 <br>
 	<display:table name="surveis" id="row"
-		requestURI="vote/list.do" class="displaytag">
+		requestURI="survey/list.do" class="displaytag">
 		<display:column titleKey="survey.details">
-			<a href="vote/details.do?surveyId=${row.id}"> <spring:message
+			<a href="survey/details.do?surveyId=${row.id}"> <spring:message
 					code="survey.details" />
 			</a>
 		</display:column>
@@ -27,13 +27,13 @@
 	
 		<display:column titleKey="survey.delete">
 			<jstl:if test="${hoy.before(row.startDate)}">
-			<a href="vote/delete.do?surveyId=${row.id}" onclick="return confirm('<spring:message code="survey.confirm.delete" />')"> <spring:message
+			<a href="survey/delete.do?surveyId=${row.id}" onclick="return confirm('<spring:message code="survey.confirm.delete" />')"> <spring:message
 					code="survey.delete"/>
 			</a>
 			</jstl:if>
 		</display:column>
 	</display:table>
 
-	<a href="vote/create.do"> <spring:message
+	<a href="survey/create.do"> <spring:message
 			code="survey.create" />
 	</a>

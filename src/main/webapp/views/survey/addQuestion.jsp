@@ -81,7 +81,7 @@
 	<br >
 	<input type="submit" name="save"
 		value="<spring:message code="survey.save" />" />&nbsp; 
-	<input type="button" onclick="location.href='vote/cancelSurvey.do?surveyId=${survey.id}'" value="<spring:message code="survey.cancel"/>" />
+	<input type="button" onclick="location.href='survey/cancelSurvey.do?surveyId=${survey.id}'" value="<spring:message code="survey.cancel"/>" />
 			</div>
 </fieldset>
 </form:form>

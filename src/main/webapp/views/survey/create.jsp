@@ -98,7 +98,7 @@
 	&nbsp; 
 	<input type="button" name="cancel" 
 		value="<spring:message code="survey.cancel" />"
-		onclick="javascript: window.location.replace('vote/list.do');" />
+		onclick="javascript: window.location.replace('survey/list.do');" />
 	<br />
 </fieldset>
 </form:form>

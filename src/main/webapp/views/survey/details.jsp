@@ -60,7 +60,7 @@
 			</jstl:if>
 			<br /> <input type="button" name="cancel"
 				value="<spring:message code="survey.back" />"
-				onclick="javascript: window.location.replace('vote/list.do');" /> <br />
+				onclick="javascript: window.location.replace('survey/list.do');" /> <br />
 	</div>
 	</fieldset>
 

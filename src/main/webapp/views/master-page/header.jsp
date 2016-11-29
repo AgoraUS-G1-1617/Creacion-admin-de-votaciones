@@ -33,12 +33,12 @@
 
 
 		<li class="arrow"></li>
-		<li><a class="fNiv" href="vote/list.do"><spring:message
+		<li><a class="fNiv" href="survey/list.do"><spring:message
 					code="master.page.list" /></a></li>
 
 
 
-		<li><a href="vote/create.do"><spring:message
+		<li><a href="survey/create.do"><spring:message
 					code="master.page.create">
 				</spring:message></a></li>
 

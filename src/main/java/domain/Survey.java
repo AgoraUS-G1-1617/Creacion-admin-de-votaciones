@@ -219,8 +219,10 @@ public class Survey extends DomainEntity implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Survey [title=" + title + ", description=" + description + ", startDate=" + startDate + ", endDate="
-				+ endDate + ", census=" + census + ", questions=" + questions + "]";
+		return title + ": " + description +
+				" / " + startDate + " - " + endDate +
+				" (" + tipo + ")";
+	
 	}
 
 }

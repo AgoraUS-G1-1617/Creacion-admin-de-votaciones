@@ -29,7 +29,7 @@ import domain.Survey;
  */
 @Controller
 @RestController
-@RequestMapping("/vote")
+@RequestMapping("/survey")
 public class SurveyController {
 
 	// Services ------------------------------------------
@@ -84,9 +84,9 @@ public class SurveyController {
 		
 		survey = surveyService.create();
 
-		result = new ModelAndView("vote/create");
+		result = new ModelAndView("survey/create");
 		result.addObject("survey", survey);
-		result.addObject("actionURL", "vote/create.do");
+		result.addObject("actionURL", "survey/create.do");
 
 		return result;
 	}
@@ -114,8 +114,8 @@ public class SurveyController {
 				|| survey.getTitle() == "" || survey.getTipo() == null || now.after(survey.getStartDate())
 				|| now.after(survey.getEndDate()) || survey.getStartDate().after(survey.getEndDate())) {
 			System.out.println(bindingResult.toString());
-			result = new ModelAndView("vote/create");
-			result.addObject("actionURL", "vote/create.do");
+			result = new ModelAndView("survey/create");
+			result.addObject("actionURL", "survey/create.do");
 			result.addObject("survey", survey);
 			if (survey.getStartDate() == null || survey.getEndDate() == null || survey.getTitle() == ""
 					|| survey.getTipo() == null) {
@@ -130,10 +130,10 @@ public class SurveyController {
 		} else {
 			try {
 				Integer s2 = surveyService.save(survey,user);
-				result = new ModelAndView("redirect:/vote/addQuestion.do");
+				result = new ModelAndView("redirect:/survey/addQuestion.do");
 				result.addObject("surveyId", s2);
 			} catch (Throwable oops) {
-				result = new ModelAndView("/vote/create");
+				result = new ModelAndView("/survey/create");
 				result.addObject("message", "survey.commit.error");
 				result.addObject("survey", survey);
 				if (survey.getStartDate() == null || survey.getEndDate() == null || survey.getTitle() == ""
@@ -190,8 +190,8 @@ public class SurveyController {
 		Assert.notNull(questio);
 		Survey survey = surveyService.findOne(questio.getSurveyId());
 		if (bindingResult.hasErrors()||questio.getText() == "") {
-			result = new ModelAndView("vote/addQuestion");
-			result.addObject("actionURL", "vote/addQuestion.do");
+			result = new ModelAndView("survey/addQuestion");
+			result.addObject("actionURL", "survey/addQuestion.do");
 			result.addObject("surveyId", survey.getId());
 			result.addObject("questio", questio);
 			if(questio.getText() == ""){
@@ -201,7 +201,7 @@ public class SurveyController {
 			try {
 				int idQuestion = questionService.saveAndFlush(questio);
 				surveyService.saveAddQuestion(survey.getId(), idQuestion, false);
-				result = new ModelAndView("vote/addQuestion");
+				result = new ModelAndView("survey/addQuestion");
 				Question question = questionService.create(survey.getId());
 				question.setSurveyId(survey.getId());
 				result.addObject("survey", survey);
@@ -242,7 +242,7 @@ public class SurveyController {
 		Survey survey = surveyService.findOne(questio.getSurveyId());
 		if (bindingResult.hasErrors()|| questio.getText() == "") {
 			result = new ModelAndView("vote/addQuestion");
-			result.addObject("actionURL", "vote/addQuestion.do");
+			result.addObject("actionURL", "survey/addQuestion.do");
 			result.addObject("survey", survey.getId());
 			result.addObject("questio", questio);
 			if(questio.getText() == ""){
@@ -268,7 +268,7 @@ public class SurveyController {
 
 				// TODO integracion con deliberaciones.(Cambiar url de despliegue en el metodo)
 //				httpRequest.generaPeticionDeliberations(survey.getId(), survey.getTitle());
-				result = new ModelAndView("redirect:/vote/list.do");
+				result = new ModelAndView("redirect:/survey/list.do");
 			} catch (Throwable oops) {
 				result = new ModelAndView("vote/addQuestion");
 				result.addObject("message", "survey.commit.error");
@@ -319,7 +319,7 @@ public class SurveyController {
 		Survey survey;
 		survey = surveyService.findOne(surveyId);
 		Assert.notNull(survey);
-		result = new ModelAndView("vote/details");
+		result = new ModelAndView("survey/details");
 		result.addObject("survey", survey);
 		return result;
 	}
@@ -334,9 +334,9 @@ public class SurveyController {
 		ModelAndView result;
 		try {
 			surveyService.delete(surveyId);
-			result = new ModelAndView("redirect:/vote/list.do");
+			result = new ModelAndView("redirect:/survey/list.do");
 		} catch (Throwable oops) {
-			result = new ModelAndView("vote/list");
+			result = new ModelAndView("survey/list");
 			result.addObject("message", "survey.error.dates");
 		}
 
@@ -374,5 +374,10 @@ public class SurveyController {
 		Collection<Survey> result = surveyService.allSurveys();
 		return result;
 	}
+	
+	
+	//CODIGO ENTENDIBLE Y USABLE 2016/17
+	
+
 
 }
