@@ -21,7 +21,7 @@
 
 	<fieldset>
 		<legend>
-			<spring:message code="survey.create" />
+			<spring:message code="survey.details" />
 		</legend>
 		<div Class="texto">
 
@@ -30,17 +30,21 @@
 			:
 			<jstl:out value="${survey.title}"></jstl:out>
 			<br />
+			<br />
 			<spring:message code="survey.description" />
 			:
 			<jstl:out value="${survey.description}"></jstl:out>
+			<br />
 			<br />
 			<spring:message code="survey.startDate" />
 			:
 			<fmt:formatDate value="${survey.startDate}" pattern="dd/MM/yyyy" />
 			<br />
+			<br />
 			<spring:message code="survey.endDate" />
 			:
 			<fmt:formatDate value="${survey.endDate}" pattern="dd/MM/yyyy" />
+			<br />
 			<br />
 			<spring:message code="survey.tipo" />
 			:
@@ -51,9 +55,10 @@
 				<spring:message code="survey.tipo.cerrado" />
 			</jstl:if>
 			<br />
+			<br />
 			<jstl:if test="${survey.questions.size()>0}">
 				<jstl:forEach var="question" items="${survey.questions}">
-					<label><spring:message code="survey.question" /></label>:
+					<label><spring:message code="survey.question" /></label>
 			<jstl:out value="${question.text}" />
 					<br />
 				</jstl:forEach>
