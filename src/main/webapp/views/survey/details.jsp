@@ -63,6 +63,9 @@
 					<br />
 				</jstl:forEach>
 			</jstl:if>
+			<br /> <input type="button" name="addQuestion"
+				value="<spring:message code="survey.add.question" />"
+				onclick="window.location='survey/addQuestion.do?surveyId=${param.surveyId}';" /> <br />
 			<br /> <input type="button" name="cancel"
 				value="<spring:message code="survey.back" />"
 				onclick="javascript: window.location.replace('survey/list.do');" /> <br />

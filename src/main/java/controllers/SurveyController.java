@@ -169,13 +169,13 @@ public class SurveyController {
 	 *         preguntas a la votación.
 	 */
 	@RequestMapping(value = "/addQuestion", method = RequestMethod.GET)
-	public ModelAndView addQuestion(Integer surveyId) {
+	public ModelAndView addQuestion(@RequestParam Integer surveyId) {
 		ModelAndView result;
 		Survey survey = surveyService.findOne(surveyId);
 		Question question = questionService.create(surveyId);
 		question.setSurveyId(surveyId);
-		result = new ModelAndView("vote/addQuestion");
-		result.addObject("actionURL", "vote/addQuestion.do");
+		result = new ModelAndView("survey/addQuestion");
+		result.addObject("actionURL", "survey/addQuestion.do");
 		result.addObject("survey", survey);
 		result.addObject("questio", question);
 		return result;
@@ -215,9 +215,9 @@ public class SurveyController {
 				result.addObject("questio", question);
 
 			} catch (Throwable oops) {
-				result = new ModelAndView("vote/addQuestion");
+				result = new ModelAndView("survey/addQuestion");
 				result.addObject("message", "survey.commit.error");
-				result.addObject("actionURL", "vote/addQuestion.do");
+				result.addObject("actionURL", "survey/addQuestion.do");
 				result.addObject("survey", survey.getId());
 				result.addObject("questio", questio);
 				if(questio.getText() == ""){
@@ -275,7 +275,7 @@ public class SurveyController {
 
 				// TODO integracion con deliberaciones.(Cambiar url de despliegue en el metodo)
 //				httpRequest.generaPeticionDeliberations(survey.getId(), survey.getTitle());
-				result = new ModelAndView("redirect:/survey/list.do");
+				result = new ModelAndView("redirect:/survey/details.do?surveyId=" + survey.getId());
 			} catch (Throwable oops) {
 				result = new ModelAndView("vote/addQuestion");
 				result.addObject("message", "survey.commit.error");
@@ -398,6 +398,19 @@ public class SurveyController {
 		result = new ModelAndView("survey/list");
 		result.addObject("surveys", surveys);
 		result.addObject("requestURI", "survey/list.do");
+		return result;
+	}
+	
+	@RequestMapping(value="/listQuestions", method = RequestMethod.GET)
+	public ModelAndView listQuestions(@RequestParam Integer surveyId) {
+		ModelAndView result;
+		Collection<Question> questions;
+		Survey s;
+		s = surveyService.findOne(surveyId);
+		questions = s.getQuestions();
+		result = new ModelAndView("survey/listQuestions");
+		result.addObject("questions", questions);
+		result.addObject("requestURI", "survey/listQuestions.do");
 		return result;
 	}
 

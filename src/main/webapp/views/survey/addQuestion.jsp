@@ -76,12 +76,12 @@
 	<form:errors cssClass="error" path="text" />
 	
 	<br>
-	<input type="submit" name="addQuestion"
-		value="<spring:message code="survey.add.question" />" />
-	<br >
 	<input type="submit" name="save"
-		value="<spring:message code="survey.save" />" />&nbsp; 
-	<input type="button" onclick="location.href='survey/cancelSurvey.do?surveyId=${survey.id}'" value="<spring:message code="survey.cancel"/>" />
+		value="<spring:message code="survey.add.question" />" />
+	
+	<input type="button" 
+		onclick="javascript: window.location.replace('survey/details.do?surveyId=${param.surveyId}');" 
+		value="<spring:message code="survey.cancel"/>" />
 			</div>
 </fieldset>
 </form:form>
