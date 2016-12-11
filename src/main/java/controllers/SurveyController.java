@@ -401,18 +401,6 @@ public class SurveyController {
 		return result;
 	}
 	
-	@RequestMapping(value="/listQuestions", method = RequestMethod.GET)
-	public ModelAndView listQuestions(@RequestParam Integer surveyId) {
-		ModelAndView result;
-		Collection<Question> questions;
-		Survey s;
-		s = surveyService.findOne(surveyId);
-		questions = s.getQuestions();
-		result = new ModelAndView("survey/listQuestions");
-		result.addObject("questions", questions);
-		result.addObject("requestURI", "survey/listQuestions.do");
-		return result;
-	}
 
 
 

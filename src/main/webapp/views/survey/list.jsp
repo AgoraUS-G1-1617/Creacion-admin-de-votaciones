@@ -23,7 +23,7 @@
 		
 		<display:column property="title"  titleKey="survey.title" />
 		<display:column>
-		<a href="survey/listQuestions.do?surveyId=${row.id}"> <spring:message
+		<a href="question/listQuestions.do?surveyId=${row.id}"> <spring:message
 				code="survey.questions" />
 		</a>
 	</display:column>
