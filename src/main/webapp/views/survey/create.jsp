@@ -48,6 +48,7 @@
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="questions" />
+	<form:hidden path="usernameCreator" />
 	<br>
 	<form:label  path="title" size="50">
 		<spring:message  code="survey.title" />:
