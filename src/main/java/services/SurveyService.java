@@ -109,8 +109,8 @@ public class SurveyService {
 	 * @return Este metodo devuelve una lista de Surveys (Votaciones) que han sido creadas por un usuario que
 	 * le enviamos como parámetro.
 	 */
-	public List<Survey> allCreatedSurveys(String usernameCreator) {
-		List<Survey> res = surveyRepository.allCreatedSurveys(usernameCreator);
+	public Collection<Survey> findOneByUsername(String usernameCreator) {
+		Collection<Survey> res = surveyRepository.allCreatedSurveys(usernameCreator);
 		return res;
 	}
 	
@@ -209,6 +209,5 @@ public class SurveyService {
 		s.setCensus(censoId);
 		saveFinal(s);
 	}
-
 	
 }

@@ -68,6 +68,20 @@ public class APIController {
 		return result;
 	}
 
-
-
+	/**
+	 * @return Este método forma parte de la API de integración. Devuelve un
+	 *         JSON con los datos de todas la votaciónes creadas por un usuario.
+	 * @param string
+	 *            username username del actor que queremos obtener sus
+	 *            votaciones creadas en el sistema.
+	 */
+	@RequestMapping(value = "/surveysUser", method = RequestMethod.GET)
+	public Collection<Survey> surveysUser(@RequestParam String username) {
+		/**
+		 * Llamamos al surveyService que devuelve una collection de surveys
+		 * pasado una string
+		 */
+		Collection<Survey> result = surveyService.findOneByUsername(username);
+		return result;
+	}
 }
