@@ -21,8 +21,3 @@
 		
 	</display:table>
 	
-	<jstl:if test="${dodelete}">
-   			<script type="text/javascript">
-   		  		alert("Acción realizada con éxito / Action done successfully");
-   			</script>
-		</jstl:if>	

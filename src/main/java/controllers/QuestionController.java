@@ -66,7 +66,7 @@ public class QuestionController {
 			surveyService.saveFinal(s);
 			result = new ModelAndView("question/listQuestions");
 			result.addObject("questions", questions);
-			result.addObject("dodelete", true);
+			result.addObject("action", "commit.ok");
 			result.addObject("requestURI", "question/listQuestions.do");
 			return result;
 		}
