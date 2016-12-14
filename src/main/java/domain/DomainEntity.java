@@ -16,8 +16,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
@@ -26,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 @Entity
 @Access(AccessType.PROPERTY)
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
 	@Type(value=Survey.class, name="survey"),

@@ -1,5 +1,6 @@
 package repositories;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -12,25 +13,37 @@ import domain.Survey;
 @Repository
 public interface SurveyRepository extends JpaRepository<Survey, Integer> {
 
-	//Consulta a la base de datos que nos devuelve una lista de Survey
-	//cuya fecha de finalización sea la que se pasa por parámetro.
+	// Consulta a la base de datos que nos devuelve una lista de Survey
+	// cuya fecha de finalización sea la que se pasa por parámetro.
 	/**
 	 * 
-	 * @param now es la fecha actual del sistema
-	 * @return Este metodo devuelve una lista de Survey (votaciónes) cuya fecha de finalización
-	 * sea igual a la fecha actual del sistema. 
+	 * @param now
+	 *            es la fecha actual del sistema
+	 * @return Este metodo devuelve una lista de Survey (votaciónes) cuya fecha
+	 *         de finalización sea igual a la fecha actual del sistema.
 	 */
 	@Query("select s from Survey s where s.endDate = ?1")
 	public List<Survey> allFinishedSurveys(Date now);
 
-	//Cosulta a la base de datos que nos devuelve una lista de Survey
-	//que han sido creadas por un username que se pasa por parámetro.
+	// Cosulta a la base de datos que nos devuelve una lista de Survey
+	// que han sido creadas por un username que se pasa por parámetro.
 	/**
 	 * 
-	 * @param username es el nombre de un usuario
-	 * @return Este metodo devuelve una lista con los Survey (votaciones) que han sido creados
-	 * por un usuario.
+	 * @param username
+	 *            es el nombre de un usuario
+	 * @return Este metodo devuelve una lista con los Survey (votaciones) que
+	 *         han sido creados por un usuario.
 	 */
 	@Query("select s from Survey s where s.usernameCreator = ?1")
-	public List<Survey> allCreatedSurveys(String username);
+	public Collection<Survey> allCreatedSurveys(String username);
+
+	// Cosulta a la base de datos que nos devuelve una lista de Survey
+	// que han sido creadas por un username que se pasa por parámetro.
+	/**
+	 * 
+	 * @param username
+	 *            es el nombre de un usuario
+	 * @return Este metodo devuelve una lista con los Survey (votaciones) que
+	 *         han sido creados por un usuario.
+	 */
 }

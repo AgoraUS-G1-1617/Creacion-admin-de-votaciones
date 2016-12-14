@@ -144,7 +144,7 @@ public class SurveyServiceTest extends AbstractTest{
 		
 		Collection<Survey> all;
 		
-		all = surveyService.allCreatedSurveys("pepe");
+		all = surveyService.findOneByUsername("pepe");
 		
 		System.out.println("\n\n\n//////////////////////////////////////////////////////////////////////////////////");
 		System.out.println("////////////// Test de mostrar todas las encuestas de un usuario //////////////////");
