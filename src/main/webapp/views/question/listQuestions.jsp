@@ -21,3 +21,7 @@
 		
 	</display:table>
 	
+
+<input type="button" name="addQuestion"
+				value="<spring:message code="survey.add.question" />"
+				onclick="window.location='survey/addQuestion.do?surveyId=${param.surveyId}';" />
