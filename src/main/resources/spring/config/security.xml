@@ -47,6 +47,7 @@
 		<security:intercept-url pattern="/survey/list.do" access="permitAll" /> 
 		<security:intercept-url pattern="/survey/details.do" access="permitAll" />
 		
+		<security:intercept-url pattern="/survey/create.do" access="permitAll" />  
 		<security:intercept-url pattern="/survey/addQuestion.do" access="permitAll" />  
 		<security:intercept-url pattern="/question/listQuestions.do" access="permitAll" /> 
 		<security:intercept-url pattern="/question/delete.do" access="permitAll" /> 

@@ -22,11 +22,12 @@
 
 		
 		<display:column property="title"  titleKey="survey.title" />
+		<display:column property="postalCode" titleKey="survey.postalCode" /> 
 		<display:column>
 		<a href="question/listQuestions.do?surveyId=${row.id}"> <spring:message
 				code="survey.questions" />
 		</a>
-	</display:column>
+		</display:column>
 		
 	
 		<display:column titleKey="survey.delete">

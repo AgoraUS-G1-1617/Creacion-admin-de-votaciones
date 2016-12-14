@@ -11,6 +11,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
@@ -34,6 +35,7 @@ public class Survey extends DomainEntity implements Serializable {
 	private Date endDate;
 	private Integer census;
 	private String tipo;
+	private String postalCode;
 
 	public Survey() {
 		super();
@@ -153,6 +155,24 @@ public class Survey extends DomainEntity implements Serializable {
 	public void setCensus(Integer census) {
 		this.census = census;
 	}
+	
+	/**
+	 * 
+	 * @return Este metodo devuelve el código postal del lugar donde tiene lugar la votación.
+	 */
+	
+	//Importante: El campo postalCode está orientado hacia encuestas realizadas en España,
+	//poseyendo así el formato nacional predeterminado.
+	@Pattern(regexp = "^\\d\\d\\d\\d\\d$")
+	@NotBlank
+	public String getPostalCode() {
+		return postalCode;
+	}
+	
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
+	}
+	
 
 	// Relationships
 	private Collection<Question> questions;

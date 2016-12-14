@@ -42,7 +42,7 @@
 					code="master.page.create">
 				</spring:message></a></li>
 
-		<li><a href="../ADMCensus"><spring:message
+		<li><a href=""><spring:message
 					code="master.page.censo">
 				</spring:message></a></li>
 	</ul>

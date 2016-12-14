@@ -28,6 +28,7 @@
 			</list>
 
 		</property>
+		<property name="postalCode" value="41005" />
 
 	<!-- Questions -->
 	</bean>

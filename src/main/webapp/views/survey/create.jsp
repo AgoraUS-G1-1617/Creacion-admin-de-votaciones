@@ -77,6 +77,13 @@
 	<form:errors cssClass="error" path="endDate" />
 	<br />
 	
+	<form:label  path="postalCode" size="5">
+		<spring:message  code="survey.postalCode" />:
+	</form:label>
+	<form:input path="postalCode"/>
+	<form:errors cssClass="error" path="title" />
+	<br />
+	
 	<form:label path="tipo">
 		<spring:message code="survey.tipo" />:
 	</form:label>

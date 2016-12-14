@@ -3,12 +3,12 @@ package controllers;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -110,57 +110,59 @@ public class SurveyController {
 	 *         los campos erróneos. En caso afirmativo, procederemos a la
 	 *         siguiente vista la cual es para añadir preguntas a la votación.
 	 */
-	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "addQuestion")
-	public ModelAndView addQuestio(@CookieValue("user") String user,Survey survey, BindingResult bindingResult) {
-		ModelAndView result;
-		Assert.notNull(survey);
-		Date now = new Date(System.currentTimeMillis() - 1000);
-		System.out.println(survey.getStartDate());
-		System.out.println(survey.getEndDate());
-		if (bindingResult.hasErrors() || survey.getStartDate() == null || survey.getEndDate() == null
-				|| survey.getTitle() == "" || survey.getTipo() == null || now.after(survey.getStartDate())
-				|| now.after(survey.getEndDate()) || survey.getStartDate().after(survey.getEndDate())) {
-			System.out.println(bindingResult.toString());
-			result = new ModelAndView("survey/create");
-			result.addObject("actionURL", "survey/create.do");
-			result.addObject("survey", survey);
-			if (survey.getStartDate() == null || survey.getEndDate() == null || survey.getTitle() == ""
-					|| survey.getTipo() == null) {
-				result.addObject("message", "survey.fields.empty");
-			}
-			if (now.after(survey.getStartDate()) || now.after(survey.getEndDate())) {
-				result.addObject("message", "survey.dates.future");
-			}
-			if (survey.getStartDate().after(survey.getEndDate())) {
-				result.addObject("message", "survey.start.end");
-			}
-		} else {
-			try {
-				Integer s2 = surveyService.save(survey,user);
-				result = new ModelAndView("redirect:/survey/addQuestion.do");
-				result.addObject("surveyId", s2);
-			} catch (Throwable oops) {
-				result = new ModelAndView("/survey/create");
-				result.addObject("message", "survey.commit.error");
-				result.addObject("survey", survey);
-				if (survey.getStartDate() == null || survey.getEndDate() == null || survey.getTitle() == ""
-						|| survey.getTipo() == null) {
-					result.addObject("message", "survey.fields.empty");
-				}
-				if (survey.getStartDate() == null || survey.getEndDate() == null || survey.getTitle() == ""
-						|| survey.getTipo() == null) {
-					result.addObject("message", "survey.fields.empty");
-				}
-				if (now.after(survey.getStartDate()) || now.after(survey.getEndDate())) {
-					result.addObject("message", "survey.dates.future");
-				}
-				if (survey.getStartDate().after(survey.getEndDate())) {
-					result.addObject("message", "survey.start.end");
-				}
-			}
-		}
-		return result;
-	}
+	
+	//Al igual que el listado, la operación de create falla al aplicar la anotación @CookieValue
+//	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "addQuestion")
+//	public ModelAndView addQuestio(@CookieValue("user") String user,Survey survey, BindingResult bindingResult) {
+//		ModelAndView result;
+//		Assert.notNull(survey);
+//		Date now = new Date(System.currentTimeMillis() - 1000);
+//		System.out.println(survey.getStartDate());
+//		System.out.println(survey.getEndDate());
+//		if (bindingResult.hasErrors() || survey.getStartDate() == null || survey.getEndDate() == null
+//				|| survey.getTitle() == "" || survey.getTipo() == null || now.after(survey.getStartDate())
+//				|| now.after(survey.getEndDate()) || survey.getStartDate().after(survey.getEndDate())) {
+//			System.out.println(bindingResult.toString());
+//			result = new ModelAndView("survey/create");
+//			result.addObject("actionURL", "survey/create.do");
+//			result.addObject("survey", survey);
+//			if (survey.getStartDate() == null || survey.getEndDate() == null || survey.getTitle() == ""
+//					|| survey.getTipo() == null) {
+//				result.addObject("message", "survey.fields.empty");
+//			}
+//			if (now.after(survey.getStartDate()) || now.after(survey.getEndDate())) {
+//				result.addObject("message", "survey.dates.future");
+//			}
+//			if (survey.getStartDate().after(survey.getEndDate())) {
+//				result.addObject("message", "survey.start.end");
+//			}
+//		} else {
+//			try {
+//				Integer s2 = surveyService.save(survey,user);
+//				result = new ModelAndView("redirect:/survey/addQuestion.do");
+//				result.addObject("surveyId", s2);
+//			} catch (Throwable oops) {
+//				result = new ModelAndView("/survey/create");
+//				result.addObject("message", "survey.commit.error");
+//				result.addObject("survey", survey);
+//				if (survey.getStartDate() == null || survey.getEndDate() == null || survey.getTitle() == ""
+//						|| survey.getTipo() == null) {
+//					result.addObject("message", "survey.fields.empty");
+//				}
+//				if (survey.getStartDate() == null || survey.getEndDate() == null || survey.getTitle() == ""
+//						|| survey.getTipo() == null) {
+//					result.addObject("message", "survey.fields.empty");
+//				}
+//				if (now.after(survey.getStartDate()) || now.after(survey.getEndDate())) {
+//					result.addObject("message", "survey.dates.future");
+//				}
+//				if (survey.getStartDate().after(survey.getEndDate())) {
+//					result.addObject("message", "survey.start.end");
+//				}
+//			}
+//		}
+//		return result;
+//	}
 
 	/**
 	 * @param surveyId
@@ -171,6 +173,7 @@ public class SurveyController {
 	@RequestMapping(value = "/addQuestion", method = RequestMethod.GET)
 	public ModelAndView addQuestion(@RequestParam Integer surveyId) {
 		ModelAndView result;
+		try{
 		Survey survey = surveyService.findOne(surveyId);
 		Question question = questionService.create(surveyId);
 		question.setSurveyId(surveyId);
@@ -178,6 +181,10 @@ public class SurveyController {
 		result.addObject("actionURL", "survey/addQuestion.do");
 		result.addObject("survey", survey);
 		result.addObject("questio", question);
+		}
+		catch(Throwable oops){
+			result = new ModelAndView("survey/create.do");
+		}
 		return result;
 	}
 
@@ -197,8 +204,8 @@ public class SurveyController {
 		Assert.notNull(questio);
 		Survey survey = surveyService.findOne(questio.getSurveyId());
 		if (bindingResult.hasErrors()||questio.getText() == "") {
-			result = new ModelAndView("survey/addQuestion");
-			result.addObject("actionURL", "survey/addQuestion.do");
+			result = new ModelAndView("survey/create");
+			result.addObject("actionURL", "survey/create.do");
 			result.addObject("surveyId", survey.getId());
 			result.addObject("questio", questio);
 			if(questio.getText() == ""){
@@ -248,7 +255,7 @@ public class SurveyController {
 		Assert.notNull(questio);
 		Survey survey = surveyService.findOne(questio.getSurveyId());
 		if (bindingResult.hasErrors()|| questio.getText() == "") {
-			result = new ModelAndView("vote/addQuestion");
+			result = new ModelAndView("survey/create"); //Anteriormente "vote/addQuestion"
 			result.addObject("actionURL", "survey/addQuestion.do");
 			result.addObject("survey", survey.getId());
 			result.addObject("questio", questio);
@@ -401,6 +408,57 @@ public class SurveyController {
 		return result;
 	}
 	
+	@RequestMapping(value = "/create", method = RequestMethod.POST, params = "addQuestion")
+	public ModelAndView addQuestio(@Valid String user,Survey survey, BindingResult bindingResult) {
+		ModelAndView result;
+		Assert.notNull(survey);
+		Date now = new Date(System.currentTimeMillis() - 1000);
+		System.out.println(survey.getStartDate());
+		System.out.println(survey.getEndDate());
+		if (bindingResult.hasErrors() || survey.getStartDate() == null || survey.getEndDate() == null
+				|| survey.getTitle() == "" || survey.getTipo() == null || now.after(survey.getStartDate())
+				|| now.after(survey.getEndDate()) || survey.getStartDate().after(survey.getEndDate())) {
+			System.out.println(bindingResult.toString());
+			result = new ModelAndView("survey/create");
+			result.addObject("actionURL", "survey/create.do");
+			result.addObject("survey", survey);
+			if (survey.getStartDate() == null || survey.getEndDate() == null || survey.getTitle() == ""
+					|| survey.getTipo() == null) {
+				result.addObject("message", "survey.fields.empty");
+			}
+			if (now.after(survey.getStartDate()) || now.after(survey.getEndDate())) {
+				result.addObject("message", "survey.dates.future");
+			}
+			if (survey.getStartDate().after(survey.getEndDate())) {
+				result.addObject("message", "survey.start.end");
+			}
+		} else {
+			try {
+				Integer s2 = surveyService.save(survey,user);
+				result = new ModelAndView("redirect:/survey/addQuestion.do");
+				result.addObject("surveyId", s2);
+			} catch (Throwable oops) {
+				result = new ModelAndView("/survey/create");
+				result.addObject("message", "survey.commit.error");
+				result.addObject("survey", survey);
+				if (survey.getStartDate() == null || survey.getEndDate() == null || survey.getTitle() == ""
+						|| survey.getTipo() == null) {
+					result.addObject("message", "survey.fields.empty");
+				}
+				if (survey.getStartDate() == null || survey.getEndDate() == null || survey.getTitle() == ""
+						|| survey.getTipo() == null) {
+					result.addObject("message", "survey.fields.empty");
+				}
+				if (now.after(survey.getStartDate()) || now.after(survey.getEndDate())) {
+					result.addObject("message", "survey.dates.future");
+				}
+				if (survey.getStartDate().after(survey.getEndDate())) {
+					result.addObject("message", "survey.start.end");
+				}
+			}
+		}
+		return result;
+	}
 
 
 
