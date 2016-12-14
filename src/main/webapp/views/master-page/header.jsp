@@ -17,12 +17,18 @@
 <div>
 	<img src="images/vota.png" alt="Creación y Administración de votaciones" />
 	<div class="lenguajes">
-		<a href="?language=en"><img src="images/en.png" alt="English"
-			height="30" width="50" /></a> <a href="?language=es"><img
+		<a href="javascript:void(0)" onclick="javascript: link('?language=en')"><img src="images/en.png" alt="English"
+			height="30" width="50" /></a> <a href="javascript:void(0)" onclick="javascript: link('?language=es')"><img
 			src="images/es.png" alt="Español" height="30" width="50" /></a>
 	</div>
 </div>
 <br/>
+
+<script>
+	function link(link){
+		return window.location.href = (window.location.href.toString().split('?')[0] + link).toString();
+	}
+</script>
 <div>
 
 	<ul id="jMenu">
