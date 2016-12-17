@@ -18,8 +18,8 @@ import domain.Survey;
 /**
  * @Class SurveyController
  * @classDec La clase contiene el controlador que maneja las acciones de las
- *           votaciones, crear, a馻dir preguntas, borrar, y la api para los
- *           otros m骴ulos.
+ *           votaciones, crear, a帽adir preguntas, borrar, y la api para los
+ *           otros m贸dulos.
  */
 @Controller
 @RestController
@@ -41,9 +41,9 @@ public class APIController {
 
 	/**
 	 * @param surveyId
-	 *            ID de la votaci髇 de la que se desea ver los detalles
-	 * @return Este m閠odo forma parte de la API de integraci髇. Devuelve un
-	 *         JSON con los datos de la votaci髇
+	 *            ID de la votaci贸n de la que se desea ver los detalles
+	 * @return Este m茅todo forma parte de la API de integraci贸n. Devuelve un
+	 *         JSON con los datos de la votaci贸n
 	 */
 	@RequestMapping(value = "/survey", method = RequestMethod.GET)
 	public Survey getSurvey(@RequestParam int id) {
@@ -52,18 +52,28 @@ public class APIController {
 	}
 
 	/**
-	 * @return Este m閠odo forma parte de la API de integraci髇. Devuelve un
-	 *         JSON con los datos de todas la votaci髇 finalizadas.
+	 * @return Este m茅todo forma parte de la API de integraci贸n. Devuelve un
+	 *         JSON con los datos de todas la votaci贸n finalizadas.
 	 */
 	@RequestMapping(value = "/finishedSurveys", method = RequestMethod.GET)
 	public Collection<Survey> findAllfinishedSurveys() {
 		Collection<Survey> result = surveyService.allFinishedSurveys();
 		return result;
 	}
+	
+		/**
+	 * @return Este m茅todo forma parte de la API de integraci贸n. Devuelve un
+	 *         JSON con los datos de todas la votaci贸n activas.
+	 */
+	@RequestMapping(value = "/activeSurveys", method = RequestMethod.GET)
+	public Collection<Survey> findAllActiveSurveys() {
+		Collection<Survey> result = surveyService.findAllActiveSurveys();
+		return result;
+	}
 
 	/**
-	 * @return Este m閠odo forma parte de la API de integraci髇. Devuelve un
-	 *         JSON con los datos de todas la votaci髇es.
+	 * @return Este m茅todo forma parte de la API de integraci贸n. Devuelve un
+	 *         JSON con los datos de todas la votaci贸nes.
 	 */
 	@RequestMapping(value = "/allSurveys", method = RequestMethod.GET)
 	public Collection<Survey> findAllSurveys() {
@@ -72,8 +82,8 @@ public class APIController {
 	}
 
 	/**
-	 * @return Este m閠odo forma parte de la API de integraci髇. Devuelve un
-	 *         JSON con los datos de todas la votaci髇es creadas por un usuario.
+	 * @return Este m茅todo forma parte de la API de integraci贸n. Devuelve un
+	 *         JSON con los datos de todas la votaci贸nes creadas por un usuario.
 	 * @param string
 	 *            username username del actor que queremos obtener sus
 	 *            votaciones creadas en el sistema.
