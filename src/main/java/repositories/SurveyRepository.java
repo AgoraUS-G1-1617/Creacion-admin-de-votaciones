@@ -14,19 +14,31 @@ import domain.Survey;
 public interface SurveyRepository extends JpaRepository<Survey, Integer> {
 
 	// Consulta a la base de datos que nos devuelve una lista de Survey
-	// cuya fecha de finalizaci髇 sea la que se pasa por par醡etro.
+	// cuya fecha de finalizaci贸n sea la que se pasa por par谩metro.
 	/**
 	 * 
 	 * @param now
 	 *            es la fecha actual del sistema
-	 * @return Este metodo devuelve una lista de Survey (votaci髇es) cuya fecha
-	 *         de finalizaci髇 sea igual a la fecha actual del sistema.
+	 * @return Este metodo devuelve una lista de Survey (votaci贸nes) cuya fecha
+	 *         de finalizaci贸n sea igual a la fecha actual del sistema.
 	 */
 	@Query("select s from Survey s where s.endDate = ?1")
 	public List<Survey> allFinishedSurveys(Date now);
+	
+	
+	// Consulta a la base de datos que nos devuelve una lista de Survey las cuales estan activas
+	/**
+	 * 
+	 * 
+	 *            
+	 * @return Este metodo devuelve una lista de Survey (votaci贸nes) activas, es decir que la fecha actual este
+	 *         entre la fecha de comienzo y la de finalizaci贸n de la votaci贸n	
+	 */
+	@Query("select s from Survey s where s.startDate<NOW() and s.endDate>NOW()")
+	public List<Survey> findAllActiveSurveys();
 
 	// Cosulta a la base de datos que nos devuelve una lista de Survey
-	// que han sido creadas por un username que se pasa por par醡etro.
+	// que han sido creadas por un username que se pasa por par谩metro.
 	/**
 	 * 
 	 * @param username
@@ -38,7 +50,7 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
 	public Collection<Survey> allCreatedSurveys(String username);
 
 	// Cosulta a la base de datos que nos devuelve una lista de Survey
-	// que han sido creadas por un username que se pasa por par醡etro.
+	// que han sido creadas por un username que se pasa por par谩metro.
 	/**
 	 * 
 	 * @param username
