@@ -135,7 +135,7 @@ public class SurveyService {
 		Assert.notNull(id);
 		Date now = new Date(System.currentTimeMillis() - 1000);
 		Survey survey = surveyRepository.findOne(id);
-		if (survey.getStartDate().after(now)) {
+		if (survey.getStartDate().before(now) || survey.getEndDate().after(now)) {
 			surveyRepository.delete(id);
 		} else {
 			throw new IllegalArgumentException("Survey is started");
