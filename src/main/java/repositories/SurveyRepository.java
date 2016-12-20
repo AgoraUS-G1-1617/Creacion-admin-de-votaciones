@@ -19,7 +19,7 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
 	 * 
 	 * @param now
 	 *            es la fecha actual del sistema
-	 * @return Este metodo devuelve una lista de Survey (votaci贸nes) cuya fecha
+	 * @return Este m閠odo devuelve una lista de Survey (votaci贸nes) cuya fecha
 	 *         de finalizaci贸n sea igual a la fecha actual del sistema.
 	 */
 	@Query("select s from Survey s where s.endDate = ?1")
@@ -31,7 +31,7 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
 	 * 
 	 * 
 	 *            
-	 * @return Este metodo devuelve una lista de Survey (votaci贸nes) activas, es decir que la fecha actual este
+	 * @return Este m閠odo devuelve una lista de Survey (votaci贸nes) activas, es decir que la fecha actual este
 	 *         entre la fecha de comienzo y la de finalizaci贸n de la votaci贸n	
 	 */
 	@Query("select s from Survey s where s.startDate<NOW() and s.endDate>NOW()")
@@ -43,7 +43,7 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
 	 * 
 	 * @param username
 	 *            es el nombre de un usuario
-	 * @return Este metodo devuelve una lista con los Survey (votaciones) que
+	 * @return Este m閠odo devuelve una lista con los Survey (votaciones) que
 	 *         han sido creados por un usuario.
 	 */
 	@Query("select s from Survey s where s.usernameCreator = ?1")
@@ -53,9 +53,12 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
 	// que han sido creadas por un username que se pasa por par谩metro.
 	/**
 	 * 
-	 * @param username
-	 *            es el nombre de un usuario
-	 * @return Este metodo devuelve una lista con los Survey (votaciones) que
-	 *         han sido creados por un usuario.
+	 * @param postalCode
+	 *            c骴igo postal del lugar donde buscar encuestas
+	 * @return Este m閠odo devuelve una lista con las Survey (votaciones) realizadas
+	 *         en un determinado lugar (mismo c骴igo postal).
 	 */
+	
+	@Query("select s from Survey s where s.postalCode = ?1")
+	public Collection<Survey> findSurveysByPlace(String postalCode);
 }

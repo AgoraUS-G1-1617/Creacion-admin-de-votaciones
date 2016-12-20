@@ -158,7 +158,7 @@ public class Survey extends DomainEntity implements Serializable {
 	
 	/**
 	 * 
-	 * @return Este metodo devuelve el código postal del lugar donde tiene lugar la votación.
+	 * @return Este método devuelve el código postal del lugar donde tiene lugar la votación.
 	 */
 	
 	//Importante: El campo postalCode está orientado hacia encuestas realizadas en España,
