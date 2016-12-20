@@ -70,6 +70,16 @@ public class APIController {
 		Collection<Survey> result = surveyService.findAllActiveSurveys();
 		return result;
 	}
+	
+		/**
+	 * @return Este método forma parte de la API de integración. Devuelve un
+	 *         JSON con los datos de todas las votaciones de un mismo lugar.
+	 */
+	@RequestMapping(value = "/surveysByPlace", method = RequestMethod.GET)
+	public Collection<Survey> findSurveysByPlace(@RequestParam String postalCode) {
+		Collection<Survey> result = surveyService.findSurveysByPlace(postalCode);
+		return result;
+	}
 
 	/**
 	 * @return Este método forma parte de la API de integración. Devuelve un

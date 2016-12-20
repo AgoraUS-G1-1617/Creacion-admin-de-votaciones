@@ -103,11 +103,22 @@ public class SurveyService {
 
 	/**
 	 * 
-	 * @return Este metodo devuelve una lista con todas las survey (votaciones) activas.
+	 * @return Este método devuelve una lista con todas las survey (votaciones) activas.
 	 */
 	public List<Survey> findAllActiveSurveys() {
 
 		List<Survey> res = surveyRepository.findAllActiveSurveys();
+		return res;
+	}
+	
+	/**
+	 * 
+	 * @return Este método devuelve una lista con todas las survey (votaciones) del mismo
+	 * lugar (mismo código psotal por tanto).
+	 */
+	public Collection<Survey> findSurveysByPlace(String postalCode){
+		
+		Collection<Survey> res = surveyRepository.findSurveysByPlace(postalCode);
 		return res;
 	}
 
