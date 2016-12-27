@@ -85,5 +85,31 @@
 		<property name="text" value="¿Tiene problemas mentales?" />
 		<property name="surveyId" value="1" />
 	</bean>
+	
+	<bean id="question4" class="domain.Question">
+		<property name="text" value="¿Tienes un coche?" />
+		<property name="surveyId" value="2" />
+	</bean>
+
+
+	<bean id="question5" class="domain.Question">
+		<property name="text" value="¿Tienes 2 coches?" />
+		<property name="surveyId" value="2" />
+	</bean>
+	
+	<bean id="question6" class="domain.Question">
+		<property name="text" value="¿Tienes 3 o mas coches?" />
+		<property name="surveyId" value="2" />
+	</bean>
+	
+		<bean id="question7" class="domain.Question">
+		<property name="text" value="No" />
+		<property name="surveyId" value="3" />
+	</bean>
+	
+	<bean id="question8" class="domain.Question">
+		<property name="text" value="Si" />
+		<property name="surveyId" value="3" />
+	</bean>
 
 </beans>
