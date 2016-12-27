@@ -29,9 +29,47 @@
 
 		</property>
 		<property name="postalCode" value="41005" />
-
-	<!-- Questions -->
 	</bean>
+	
+	<bean id="survey2" class="domain.Survey">
+		<property name="title" value="Numero de coches" />
+		<property name="description" value="Encuestas para conocer el numero de coches de los individuos de la población" />
+		<property name="startDate" value="2017/01/01 12:00" />
+		<property name="endDate" value="2017/02/02 12:00" />
+		<property name="tipo" value="Cerrado" />
+		<property name="census" value="1" />
+		<property name="usernameCreator" value="Verde1" />
+		<property name="questions">
+			<list>
+				<ref bean="question4" />
+				<ref bean="question5" />
+				<ref bean="question6" />
+
+			</list>
+
+		</property>
+		<property name="postalCode" value="11160" />
+	</bean>
+	<bean id="survey3" class="domain.Survey">
+		<property name="title" value="Crisis" />
+		<property name="description" value="Pretendemos conocer si la gente cree que ya hemos superado la crisis" />
+		<property name="startDate" value="2017/03/01 12:00" />
+		<property name="endDate" value="2017/04/11 12:00" />
+		<property name="tipo" value="Cerrado" />
+		<property name="census" value="1" />
+		<property name="usernameCreator" value="Verde1" />
+		<property name="questions">
+			<list>
+				<ref bean="question7" />
+				<ref bean="question8" />
+
+			</list>
+
+		</property>
+		<property name="postalCode" value="11393" />
+	</bean>
+	<!-- Questions -->
+	
 	<bean id="question1" class="domain.Question">
 		<property name="text" value="¿Cual es su equipo de fútbol favorito?" />
 		<property name="surveyId" value="1" />
