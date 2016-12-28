@@ -113,6 +113,17 @@ img {
 	background: url("./graphics/wide/bg-content-secondary.gif") repeat-y;
 }
 
+/* unvisited link */
+a:link {
+    color: blue;
+    text-decoration: none;
+}
+/* mouse over link */
+a:hover {
+    color: red;
+    text-decoration: underline;
+}
+
 p {
 	padding-top: 50px;
 	padding-right: 30px;
