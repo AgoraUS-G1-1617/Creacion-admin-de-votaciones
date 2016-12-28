@@ -53,39 +53,42 @@
 				<form:hidden path="version" />
 				<form:hidden path="questions" />
 				<form:hidden path="usernameCreator" />
-				<div style="text-align:center">
+				<div style="text-align: center">
 					<table class="tablacrear">
 
 						<tr>
-							<td><spring:message code="survey.title" />:</td>
-							<td style="text-align: right;"><form:input path="title" />
+							<td class="tdnombre"><spring:message code="survey.title" />:</td>
+							<td style="text-align: center;"><form:input path="title" />
 								<form:errors cssClass="error" path="title" /></td>
 						</tr>
 						<tr>
-							<td><spring:message code="survey.description" />:</td>
-							<td style="text-align: right;"><form:input
+							<td class="tdnombre"><spring:message
+									code="survey.description" />:</td>
+							<td style="text-align: center;"><form:input
 									path="description" /> <form:errors cssClass="error"
 									path="description" /></td>
 						</tr>
 						<tr>
-							<td><spring:message code="survey.startDate" />:</td>
-							<td style="text-align: right;"><form:input path="startDate"
+							<td class="tdnombre"><spring:message code="survey.startDate" />:</td>
+							<td style="text-align: center;"><form:input path="startDate"
 									id="datepicker" /> <form:errors cssClass="error"
 									path="startDate" /></td>
 						</tr>
 						<tr>
-							<td><spring:message code="survey.endDate" />:</td>
-							<td style="text-align: right;"><form:input path="endDate"
+							<td class="tdnombre"><spring:message code="survey.endDate" />:</td>
+							<td style="text-align: center;"><form:input path="endDate"
 									id="datepicka" /> <form:errors cssClass="error" path="endDate" /></td>
 						</tr>
 						<tr>
-							<td><spring:message code="survey.postalCode" />:</td>
-							<td style="text-align: right;"><form:input path="postalCode" />
-								<form:errors cssClass="error" path="title" /></td>
+							<td class="tdnombre"><spring:message
+									code="survey.postalCode" />:</td>
+							<td style="text-align: center;"><form:input
+									path="postalCode" /> <form:errors cssClass="error"
+									path="title" /></td>
 						</tr>
 						<tr>
-							<td><spring:message code="survey.tipo" />:</td>
-							<td style="text-align: right;"><form:select path="tipo">
+							<td class="tdnombre"><spring:message code="survey.tipo" />:</td>
+							<td style="text-align: center;"><form:select path="tipo">
 									<option value="Abierto" selected>
 										<spring:message code="survey.tipo.abierto"></spring:message>
 									</option>

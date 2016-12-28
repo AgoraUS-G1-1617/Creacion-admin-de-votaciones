@@ -30,63 +30,71 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
- <br/>
-  <br/>
-  <br/>
- <div class ="centro">
-<form:form action="${actionURL}" modelAttribute="questio">
+<div class="centro">
+	<form:form action="${actionURL}" modelAttribute="questio">
 
-<fieldset>
-	<legend><spring:message code = "survey.add.question"/></legend>
-	<div class="texto">
-	
-	<form:hidden path="id" />
-	<form:hidden path="version" />
-	<form:hidden path="surveyId" />
-	
-	<spring:message code="survey.title" />: <jstl:out
-		value="${survey.title}"></jstl:out>
-	<br>
-	<spring:message code="survey.description" />: <jstl:out
-		value="${survey.description}"></jstl:out>
-	<br />
-	<spring:message code="survey.startDate" />: <fmt:formatDate value="${survey.startDate}" pattern="dd/MM/yyyy"/>
-	<br />
-	<spring:message code="survey.endDate" />: <fmt:formatDate value="${survey.endDate}" pattern="dd/MM/yyyy"/>
-	<br />
-	<spring:message code="survey.tipo" />: <jstl:if
-		test="${survey.tipo eq 'Abierto'}">
-		<spring:message code="survey.tipo.abierto" />
-	</jstl:if>
-	<jstl:if test="${survey.tipo eq 'Cerrado'}"><spring:message code="survey.tipo.cerrado" /></jstl:if>
-	<br />
-	<jstl:if test="${survey.questions.size()>0}">
-		<jstl:forEach var="question" items="${survey.questions}">
-			<label><spring:message code="survey.question" /></label>:
-			<jstl:out value="${question.text}" />
-			<br />
-		</jstl:forEach>
-	</jstl:if>
-	<br />
-	
-	<form:label path="text">
-		<spring:message code="survey.question" />
-	</form:label>
-	<form:input path="text" />
-	<form:errors cssClass="error" path="text" />
-	
-	<br>
-	<input type="submit" name="save"
-		value="<spring:message code="survey.add.question" />" />
-	
-	<input type="button" 
-		onclick="javascript: window.location.replace('survey/details.do?surveyId=${param.surveyId}');" 
-		value="<spring:message code="survey.cancel"/>" />
+		<fieldset class="crear">
+			<legend>
+				<spring:message code="survey.add.question" />
+			</legend>
+			<div class="texto">
+				<table class="tablacrear">
+
+					<form:hidden path="id" />
+					<form:hidden path="version" />
+					<form:hidden path="surveyId" />
+					<tr>
+						<td class="tdnombre"><spring:message code="survey.title" /> :</td>
+						<td style="text-align: center;"><jstl:out value="${survey.title}"></jstl:out></td>
+					</tr>
+					<tr>
+						<td class="tdnombre"><spring:message code="survey.description" /> :</td>
+						<td style="text-align: center;"><jstl:out value="${survey.description}"></jstl:out></td>
+					</tr>
+					<tr>
+						<td class="tdnombre"><spring:message code="survey.startDate"/> :</td>
+						<td style="text-align: center;"><fmt:formatDate value="${survey.startDate}"
+								pattern="dd/MM/yyyy" /></td>
+					</tr>
+					<tr>
+						<td class="tdnombre"><spring:message code="survey.endDate" /> :</td>
+						<td style="text-align: center;"><fmt:formatDate value="${survey.endDate}"
+								pattern="dd/MM/yyyy" /></td>
+					</tr>
+					<tr>
+						<td class="tdnombre"><spring:message code="survey.tipo" /> :</td>
+						<td style="text-align: center;"><jstl:if test="${survey.tipo eq 'Abierto'}">
+								<spring:message code="survey.tipo.abierto" />
+							</jstl:if> <jstl:if test="${survey.tipo eq 'Cerrado'}">
+								<spring:message code="survey.tipo.cerrado" />
+							</jstl:if></td>
+					</tr>
+					<jstl:if test="${survey.questions.size()>0}">
+						<jstl:forEach var="question" items="${survey.questions}">
+							<tr>
+								<td class="tdnombre"><spring:message code="survey.question" /></td>
+								<td style="text-align: center;"><jstl:out value="${question.text}" /></td>
+							</tr>
+						</jstl:forEach>
+					</jstl:if>
+
+					<tr>
+						<td class="tdnombre"><spring:message code="survey.question" /></td>
+						<td><form:input path="text" /> <form:errors cssClass="error"
+								path="text" /></td>
+					</tr>
+
+				</table>
+				<input type="submit" name="save"
+					value="<spring:message code="survey.add.question" />" /> <input
+					type="button"
+					onclick="javascript: window.location.replace('survey/details.do?surveyId=${param.surveyId}');"
+					value="<spring:message code="survey.cancel"/>" />
 			</div>
-</fieldset>
-</form:form>
+		</fieldset>
+	</form:form>
 </div>
- <br/>
-  <br/>
-  <br/>
-  <br/>
+<br />
+<br />
+<br />
+<br />

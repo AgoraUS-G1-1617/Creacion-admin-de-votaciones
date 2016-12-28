@@ -24,31 +24,31 @@
 			<table class="tablacrear">
 
 				<tr>
-					<td style="width: 50%;"><spring:message code="survey.title" />
+					<td class="tdnombre"><spring:message code="survey.title" />
 						:</td>
 					<td style="text-align: center;"><jstl:out
 							value="${survey.title}"></jstl:out></td>
 				</tr>
 				<tr>
-					<td style="width: 50%;"><spring:message
+					<td class="tdnombre"><spring:message
 							code="survey.description" /> :</td>
 					<td style="text-align: center;"><jstl:out
 							value="${survey.description}"></jstl:out></td>
 				</tr>
 				<tr>
-					<td style="width: 50%;"><spring:message
+					<td class="tdnombre"><spring:message
 							code="survey.startDate" /> :</td>
 					<td style="text-align: center;"><fmt:formatDate
 							value="${survey.startDate}" pattern="dd/MM/yyyy" /></td>
 				</tr>
 				<tr>
-					<td style="width: 50%;"><spring:message code="survey.endDate" />
+					<td class="tdnombre"><spring:message code="survey.endDate" />
 						:</td>
 					<td style="text-align: center;"><fmt:formatDate
 							value="${survey.endDate}" pattern="dd/MM/yyyy" /></td>
 				</tr>
 				<tr>
-					<td style="width: 50%;"><spring:message code="survey.tipo" />
+					<td class="tdnombre"><spring:message code="survey.tipo" />
 						:</td>
 					<td style="text-align: center;"><jstl:if
 							test="${survey.tipo eq 'Abierto'}">
@@ -62,7 +62,7 @@
 
 					<jstl:forEach var="question" items="${survey.questions}">
 						<tr>
-							<td style="width: 50%;"><spring:message
+							<td class="tdnombre"><spring:message
 									code="survey.question" /></td>
 							<td style="text-align: center;"><jstl:out
 									value="${question.text}" /></td>

@@ -7,6 +7,12 @@
  * http://www.tdg-seville.info/License.html
  * 
  */
+.tdnombre {
+	font-family: "Homer Simpson", cursive;
+	width: 50%;
+	color:#FF0000;
+}
+
 .error {
 	color: red;
 	font-weight: bolder;
