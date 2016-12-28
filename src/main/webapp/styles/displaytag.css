@@ -7,8 +7,6 @@
  * http://www.tdg-seville.info/License.html
  * 
  */
-
- 
 table {
 	border: 1px solid #666;
 	width: 80%;
@@ -48,19 +46,19 @@ th.sortable a {
 	background-image: url(../images/arrow_off.png);
 	background-repeat: no-repeat;
 	background-position: center center;
-	background-position: right;	
+	background-position: right;
 }
 
 th.order1 a {
 	background-image: url(../images/arrow_down.png);
 	background-repeat: no-repeat;
-	background-position: right;		
+	background-position: right;
 }
 
 th.order2 a {
 	background-image: url(../images/arrow_up.png);
 	background-repeat: no-repeat;
-	background-position: right;	
+	background-position: right;
 }
 
 tr.odd {
@@ -163,3 +161,4 @@ span.pagelinks {
 .grandtotal-row {
 	border-top: 2px solid black;
 }
+

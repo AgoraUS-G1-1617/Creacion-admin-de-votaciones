@@ -28,7 +28,7 @@
 <div>
 	<jstl:if test="${about!=true}">
 
-		<a href="welcome/aboutus.do" class="aboutus"> <spring:message code="about.boton" />
+		<a href="welcome/aboutus.do" class="enlaceboton"> <spring:message code="about.boton" />
 		</a>
 	</jstl:if>
 </div>
