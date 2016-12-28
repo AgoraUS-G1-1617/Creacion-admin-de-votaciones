@@ -15,7 +15,8 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <div>
-	<img src="images/vota.png" alt="Creación y Administración de votaciones" />
+
+	<img src="images/vota.png" alt="Creación y Administración de votaciones"/>
 	<div class="lenguajes">
 		<a href="javascript:void(0)" onclick="javascript: link('?language=en')"><img src="images/en.png" alt="English"
 			height="30" width="50" /></a> <a href="javascript:void(0)" onclick="javascript: link('?language=es')"><img

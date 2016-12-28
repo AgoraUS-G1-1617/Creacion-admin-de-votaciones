@@ -53,22 +53,29 @@ th {
 	font-family: verdana, arial, sans-serif;
 	font-size: 10pt;
 	font-weight: bold;
+	text-decoration: none;
 	padding: 4px;
 	background-color: #EEE;
 	color: #FF0000;
 	border-top: 1px outset #EEE;
 	border-left: 1px outset #EEE;
 	text-decoration: none;
+	padding: 4px
 }
 
 .enlaceboton2:link,.enlaceboton:visited {
+	text-decoration: none;
+	color: #FF0000;
 	border-top: 1px solid #cccccc;
 	border-bottom: 2px solid #FF0000;
 	border-left: 1px solid #cccccc;
 	border-right: 2px solid #FF0000;
+	border-top: 1px solid #cccccc;
 }
 
 .enlaceboton2:hover {
+	text-decoration: none;
+	color: #FF0000;
 	border-bottom: 1px solid #cccccc;
 	border-top: 2px solid #FF0000;
 	border-right: 1px solid #cccccc;
@@ -82,12 +89,15 @@ th {
 	padding: 4px;
 	background-color: #EEE;
 	color: #0040FF;
+	text-decoration: none;
 	border-top: 1px outset #EEE;
 	border-left: 1px outset #EEE;
 	text-decoration: none;
 }
 
 .enlaceboton:link,.enlaceboton:visited {
+	text-decoration: none;
+	color: #0040FF;
 	border-top: 1px solid #cccccc;
 	border-bottom: 2px solid #0040FF;
 	border-left: 1px solid #cccccc;
@@ -95,10 +105,13 @@ th {
 }
 
 .enlaceboton:hover {
+	text-decoration: none;
+	color: #0040FF;
 	border-bottom: 1px solid #cccccc;
 	border-top: 2px solid #0040FF;
 	border-right: 1px solid #cccccc;
 	border-left: 2px solid #0040FF;
+	border-bottom: 1px solid #cccccc;
 }
 
 img {
@@ -115,13 +128,13 @@ img {
 
 /* unvisited link */
 a:link {
-    color: blue;
-    text-decoration: none;
+	color: blue;
+	text-decoration: none;
 }
 /* mouse over link */
 a:hover {
-    color: red;
-    text-decoration: underline;
+	color: red;
+	text-decoration: underline;
 }
 
 p {
@@ -168,18 +181,27 @@ label {
 	margin: .5em 0 0 0;
 }
 
-div.centro {
+.crear {
 	text-align: center;
+	border: 3px solid #0040FF;
+	width: 30%;
+	margin: auto;
 }
 
 div.texto {
 	font-family: Arial;
 	font-size: 20px;
+	width: 100%;
+	margin: 0 auto;
 }
 
 input:focus {
 	border: 2px solid #000;
 	background: #F3F3F3;
+}
+
+.tablacrear {
+	border: 0;
 }
 
 fieldset {
@@ -193,5 +215,5 @@ fieldset {
 legend {
 	text-align: center; /*Puedes cambiarlo por center o right*/
 	font-size: 40px; /*Estilo de la fuente del título*/
-	color: #61380B; /*Color del título*/
+	color: red; /*Color del título*/
 }
