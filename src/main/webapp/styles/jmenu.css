@@ -11,12 +11,20 @@
 	display: table;
 	margin: 0px;
 	padding: 0px;
+	font-weight: bold;
 }
 
 /* First level */
 .jMenu li {
 	display: table-cell;
-	background-color: #322f32;
+	background-color: #483D8B;
+	margin: 0px;
+	border:0.5px solid #0040FF;
+}
+
+.jMenu li:hover {
+	display: table-cell;
+	background-color: #0040FF;
 	margin: 0px;
 }
 

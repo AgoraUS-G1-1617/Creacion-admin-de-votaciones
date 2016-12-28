@@ -10,7 +10,7 @@
 .tdnombre {
 	font-family: "Homer Simpson", cursive;
 	width: 50%;
-	color:#FF0000;
+	color:#483D8B;
 }
 
 .error {
@@ -62,7 +62,7 @@ th {
 	text-decoration: none;
 	padding: 4px;
 	background-color: #EEE;
-	color: #FF0000;
+	color: black;
 	border-top: 1px outset #EEE;
 	border-left: 1px outset #EEE;
 	text-decoration: none;
@@ -71,7 +71,7 @@ th {
 
 .enlaceboton2:link,.enlaceboton:visited {
 	text-decoration: none;
-	color: #FF0000;
+	color: black;
 	border-top: 1px solid #cccccc;
 	border-bottom: 2px solid #FF0000;
 	border-left: 1px solid #cccccc;
@@ -81,7 +81,7 @@ th {
 
 .enlaceboton2:hover {
 	text-decoration: none;
-	color: #FF0000;
+	color: black;
 	border-bottom: 1px solid #cccccc;
 	border-top: 2px solid #FF0000;
 	border-right: 1px solid #cccccc;
@@ -221,5 +221,5 @@ fieldset {
 legend {
 	text-align: center; /*Puedes cambiarlo por center o right*/
 	font-size: 40px; /*Estilo de la fuente del título*/
-	color: red; /*Color del título*/
+	color: #483D8B; /*Color del título*/
 }
