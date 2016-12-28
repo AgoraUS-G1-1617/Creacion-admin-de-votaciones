@@ -24,12 +24,14 @@
 
 <jsp:useBean id="date" class="java.util.Date" />
 
-<hr class="linea"/>
+<hr class="linea" />
 <div>
 	<jstl:if test="${about!=true}">
-
-		<a href="welcome/aboutus.do" class="enlaceboton"> <spring:message code="about.boton" />
-		</a>
+		<div class="button">
+			<a href="welcome/aboutus.do" class="enlaceboton"> <spring:message
+					code="about.boton" />
+			</a>
+		</div>
 	</jstl:if>
 </div>
 

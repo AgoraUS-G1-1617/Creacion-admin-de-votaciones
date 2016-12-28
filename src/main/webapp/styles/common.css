@@ -20,8 +20,7 @@
 .action {
 	color: green;
 	font-weight: bolder;
-} 
-
+}
 
 h1 {
 	font: white;
@@ -45,6 +44,36 @@ th {
 		rgba(0, 0, 0, 0.19);
 }
  */
+.button {
+	float: right;
+	margin-right: 10px;
+}
+
+.enlaceboton2 {
+	font-family: verdana, arial, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	padding: 4px;
+	background-color: #EEE;
+	color: #FF0000;
+	border-top: 1px outset #EEE;
+	border-left: 1px outset #EEE;
+	text-decoration: none;
+}
+
+.enlaceboton2:link,.enlaceboton:visited {
+	border-top: 1px solid #cccccc;
+	border-bottom: 2px solid #FF0000;
+	border-left: 1px solid #cccccc;
+	border-right: 2px solid #FF0000;
+}
+
+.enlaceboton2:hover {
+	border-bottom: 1px solid #cccccc;
+	border-top: 2px solid #FF0000;
+	border-right: 1px solid #cccccc;
+	border-left: 2px solid #FF0000;
+}
 
 .enlaceboton {
 	font-family: verdana, arial, sans-serif;
@@ -53,23 +82,25 @@ th {
 	padding: 4px;
 	background-color: #EEE;
 	color: #0040FF;
-	border: 1px outset #0040FF;
+	border-top: 1px outset #EEE;
+	border-left: 1px outset #EEE;
 	text-decoration: none;
 }
 
 .enlaceboton:link,.enlaceboton:visited {
 	border-top: 1px solid #cccccc;
-	border-bottom: 2px solid #666666;
+	border-bottom: 2px solid #0040FF;
 	border-left: 1px solid #cccccc;
-	border-right: 2px solid #666666;
+	border-right: 2px solid #0040FF;
 }
 
 .enlaceboton:hover {
 	border-bottom: 1px solid #cccccc;
-	border-top: 2px solid #666666;
+	border-top: 2px solid #0040FF;
 	border-right: 1px solid #cccccc;
-	border-left: 2px solid #666666;
+	border-left: 2px solid #0040FF;
 }
+
 img {
 	border: 1px solid #0040FF;
 }

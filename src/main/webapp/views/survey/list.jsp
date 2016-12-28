@@ -39,6 +39,6 @@
 		</display:column>
 	</display:table>
 
-	<a href="survey/create.do"> <spring:message
+	<a href="survey/create.do" class="enlaceboton2"> <spring:message
 			code="survey.create" />
 	</a>
