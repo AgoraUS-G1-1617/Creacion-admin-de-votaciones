@@ -14,62 +14,72 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<br />
-<br />
-<br />
 <div class="centro">
 
-	<fieldset>
+	<fieldset class="crear">
 		<legend>
 			<spring:message code="survey.details" />
 		</legend>
-		<div Class="texto">
+		<div class="texto">
+			<table class="tablacrear">
 
+				<tr>
+					<td style="width: 50%;"><spring:message code="survey.title" />
+						:</td>
+					<td style="text-align: center;"><jstl:out
+							value="${survey.title}"></jstl:out></td>
+				</tr>
+				<tr>
+					<td style="width: 50%;"><spring:message
+							code="survey.description" /> :</td>
+					<td style="text-align: center;"><jstl:out
+							value="${survey.description}"></jstl:out></td>
+				</tr>
+				<tr>
+					<td style="width: 50%;"><spring:message
+							code="survey.startDate" /> :</td>
+					<td style="text-align: center;"><fmt:formatDate
+							value="${survey.startDate}" pattern="dd/MM/yyyy" /></td>
+				</tr>
+				<tr>
+					<td style="width: 50%;"><spring:message code="survey.endDate" />
+						:</td>
+					<td style="text-align: center;"><fmt:formatDate
+							value="${survey.endDate}" pattern="dd/MM/yyyy" /></td>
+				</tr>
+				<tr>
+					<td style="width: 50%;"><spring:message code="survey.tipo" />
+						:</td>
+					<td style="text-align: center;"><jstl:if
+							test="${survey.tipo eq 'Abierto'}">
+							<spring:message code="survey.tipo.abierto" />
+						</jstl:if> <jstl:if test="${survey.tipo eq 'Cerrado'}">
+							<spring:message code="survey.tipo.cerrado" />
+						</jstl:if></td>
+				</tr>
 
-			<spring:message code="survey.title" />
-			:
-			<jstl:out value="${survey.title}"></jstl:out>
-			<br />
-			<br />
-			<spring:message code="survey.description" />
-			:
-			<jstl:out value="${survey.description}"></jstl:out>
-			<br />
-			<br />
-			<spring:message code="survey.startDate" />
-			:
-			<fmt:formatDate value="${survey.startDate}" pattern="dd/MM/yyyy" />
-			<br />
-			<br />
-			<spring:message code="survey.endDate" />
-			:
-			<fmt:formatDate value="${survey.endDate}" pattern="dd/MM/yyyy" />
-			<br />
-			<br />
-			<spring:message code="survey.tipo" />
-			:
-			<jstl:if test="${survey.tipo eq 'Abierto'}">
-				<spring:message code="survey.tipo.abierto" />
-			</jstl:if>
-			<jstl:if test="${survey.tipo eq 'Cerrado'}">
-				<spring:message code="survey.tipo.cerrado" />
-			</jstl:if>
-			<br />
-			<br />
-			<jstl:if test="${survey.questions.size()>0}">
-				<jstl:forEach var="question" items="${survey.questions}">
-					<label><spring:message code="survey.question" /></label>
-			<jstl:out value="${question.text}" />
-					<br />
-				</jstl:forEach>
-			</jstl:if>
-			<br /> <input type="button" name="addQuestion"
+				<jstl:if test="${survey.questions.size()>0}">
+
+					<jstl:forEach var="question" items="${survey.questions}">
+						<tr>
+							<td style="width: 50%;"><spring:message
+									code="survey.question" /></td>
+							<td style="text-align: center;"><jstl:out
+									value="${question.text}" /></td>
+						</tr>
+					</jstl:forEach>
+
+				</jstl:if>
+			</table>
+
+			<input type="button" name="addQuestion"
 				value="<spring:message code="survey.add.question" />"
-				onclick="window.location='survey/addQuestion.do?surveyId=${param.surveyId}';" /> <br />
-			<br /> <input type="button" name="cancel"
+				onclick="window.location='survey/addQuestion.do?surveyId=${param.surveyId}';" />
+			<input type="button" name="cancel"
 				value="<spring:message code="survey.back" />"
-				onclick="javascript: window.location.replace('survey/list.do');" /> <br />
-	</div>
+				onclick="javascript: window.location.replace('survey/list.do');" />
+			<br />
+		</div>
 	</fieldset>
 
 </div>
