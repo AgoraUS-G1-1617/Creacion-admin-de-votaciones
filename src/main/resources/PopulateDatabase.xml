@@ -34,8 +34,8 @@
 	<bean id="survey2" class="domain.Survey">
 		<property name="title" value="Numero de coches" />
 		<property name="description" value="Encuestas para conocer el numero de coches de los individuos de la población" />
-		<property name="startDate" value="2017/01/01 12:00" />
-		<property name="endDate" value="2017/02/02 12:00" />
+		<property name="startDate" value="2018/01/01 12:00" />
+		<property name="endDate" value="2018/02/02 12:00" />
 		<property name="tipo" value="Cerrado" />
 		<property name="census" value="1" />
 		<property name="usernameCreator" value="Verde1" />
@@ -53,7 +53,7 @@
 	<bean id="survey3" class="domain.Survey">
 		<property name="title" value="Crisis" />
 		<property name="description" value="Pretendemos conocer si la gente cree que ya hemos superado la crisis" />
-		<property name="startDate" value="2017/03/01 12:00" />
+		<property name="startDate" value="2016/03/01 12:00" />
 		<property name="endDate" value="2017/04/11 12:00" />
 		<property name="tipo" value="Cerrado" />
 		<property name="census" value="1" />
@@ -67,6 +67,22 @@
 
 		</property>
 		<property name="postalCode" value="11393" />
+	</bean>
+	
+		<bean id="survey4" class="domain.Survey">
+		<property name="title" value="Polución" />
+		<property name="description" value="¿Cree que las medidas implantadas en el ayuntamiento de madrid son correctas?" />
+		<property name="startDate" value="2016/12/12 12:00" />
+		<property name="endDate" value="2017/01/10 12:00" />
+		<property name="tipo" value="Cerrado" />
+		<property name="census" value="1" />
+		<property name="usernameCreator" value="Verde1" />
+		<property name="questions">
+			<list>
+			</list>
+
+		</property>
+		<property name="postalCode" value="41012" />
 	</bean>
 	<!-- Questions -->
 	
