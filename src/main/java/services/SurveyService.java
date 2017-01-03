@@ -29,7 +29,7 @@ public class SurveyService {
 	
 	/**
 	 * 
-	 * @param s es un objeto de tipo Survey (Votación).
+	 * @param s es un objeto de tipo Survey (VotaciÃ³n).
 	 * @return Este metodo devuelve devuelve un objeto de tipo Int que contiene la id del Survey creado.
 	 */
 	@Transactional
@@ -66,10 +66,10 @@ public class SurveyService {
 	// Metodo para obtener la id del censo. Tenemos que enviarle la survey.
 	/**
 	 * 
-	 * @param survey es un objeto de tipo Survey (Votación).
-	 * @return Este metodo devuelve la id del censo, que se pediría al subsitema Censo, pero en este caso
-	 * como las llamadas http no están correctamente implementadas en el subsistema Censo, obligamo a este
-	 * método a devolver siempre una idea estática para que por lo menos no se pierda la traza del conjunto. 
+	 * @param survey es un objeto de tipo Survey (VotaciÃ³n).
+	 * @return Este metodo devuelve la id del censo, que se pedirÃ­a al subsitema Censo, pero en este caso
+	 * como las llamadas http no estÃ¡n correctamente implementadas en el subsistema Censo, obligamo a este
+	 * mÃ©todo a devolver siempre una idea estÃ¡tica para que por lo menos no se pierda la traza del conjunto. 
 	 */
 	private Integer getIdCensusFromOtherSubsystem(Survey survey) {
 		return 7;
@@ -77,18 +77,18 @@ public class SurveyService {
 
 
 	// Metodo para obtener un survey mediante su id que le enviamos como
-	//parámetro
+	//parÃ¡metro
 	/**
 	 * 
-	 * @param id hace referencia a la id de un objeto de tipo Survey (Votación).
-	 * @return Este metodo devuelve un objeto de tipo Survey (Votación) mediante 
-	 * una llamada al repositorio de la entidad Survey (Votación).
+	 * @param id hace referencia a la id de un objeto de tipo Survey (VotaciÃ³n).
+	 * @return Este metodo devuelve un objeto de tipo Survey (VotaciÃ³n) mediante 
+	 * una llamada al repositorio de la entidad Survey (VotaciÃ³n).
 	 */ 
 	public Survey findOne(int id) {
 		Assert.notNull(id);
 		return surveyRepository.findOne(id);
 	}
-	// Método de interacción con el subsistema de Visualización
+	// MÃ©todo de interacciÃ³n con el subsistema de VisualizaciÃ³n
 	/**
 	 * 
 	 * @return Este metodo devuelve una lista con todas las survey (votaciones) que han finalizado.
@@ -103,7 +103,7 @@ public class SurveyService {
 
 	/**
 	 * 
-	 * @return Este m�todo devuelve una lista con todas las survey (votaciones) activas.
+	 * @return Este método devuelve una lista con todas las survey (votaciones) activas.
 	 */
 	public List<Survey> findAllActiveSurveys() {
 
@@ -113,8 +113,8 @@ public class SurveyService {
 	
 	/**
 	 * 
-	 * @return Este m�todo devuelve una lista con todas las survey (votaciones) del mismo
-	 * lugar (mismo c�digo psotal por tanto).
+	 * @return Este método devuelve una lista con todas las survey (votaciones) del mismo
+	 * lugar (mismo código psotal por tanto).
 	 */
 	public Collection<Survey> findSurveysByPlace(String postalCode){
 		
@@ -123,13 +123,13 @@ public class SurveyService {
 	}
 
 	// Metodo que devuelve una lista de surveys que han sido creados por un usuario
-	//que le pasamos como parámetro.
+	//que le pasamos como parÃ¡metro.
 	/**
 	 * 
 	 * @param usernameCreator contiene un objeto de tipo String que contiene el nombre 
-	 * de usuario del creador de alguna Survey (Votación).
+	 * de usuario del creador de alguna Survey (VotaciÃ³n).
 	 * @return Este metodo devuelve una lista de Surveys (Votaciones) que han sido creadas por un usuario que
-	 * le enviamos como parámetro.
+	 * le enviamos como parÃ¡metro.
 	 */
 	public Collection<Survey> findOneByUsername(String usernameCreator) {
 		Collection<Survey> res = surveyRepository.allCreatedSurveys(usernameCreator);
@@ -137,10 +137,10 @@ public class SurveyService {
 	}
 	
 	// Metodo que elimina survey de la base de datos, mediante la id del survey
-	//que le pasamos como parámetro
+	//que le pasamos como parÃ¡metro
 	/**
 	 * 
-	 * @param id es la identificación de una Survey (Votación).
+	 * @param id es la identificaciÃ³n de una Survey (VotaciÃ³n).
 	 */
 	public void delete(int id) {
 		Assert.notNull(id);
@@ -167,12 +167,14 @@ public class SurveyService {
 		}
 	}
 */	
-	// Metodo que devuelve una colección de todos los survey que persisten en
+	// Metodo que devuelve una colecciÃ³n de todos los survey que persisten en
 	//la base de datos del sistema
 	/**
 	 * 
-	 * @return Este metodo devuelve una colección de todas las Survey (Votación) almacenadas en el sistema.
+	 * @return Este metodo devuelve una colecciÃ³n de todas las Survey (VotaciÃ³n) almacenadas en el sistema.
 	 */
+	
+	//este metodo devuelve un conjunto con todas las Surveys guardadas en el sistema.
 	public Collection<Survey> allSurveys() {
 		return surveyRepository.findAll();
 	}
@@ -181,7 +183,7 @@ public class SurveyService {
 	//dicho metodo
 	/**
 	 * 
-	 * @return Este metodod evuelve un objeto de tipo Survey (Votación).
+	 * @return Este metodod evuelve un objeto de tipo Survey (VotaciÃ³n).
 	 */
 	public Survey create() {
 		Survey result;
@@ -191,15 +193,15 @@ public class SurveyService {
 		return result;
 	}
 
-	// Metodo que recupera un survey y le modifica la colección de question
-	// añadiendole una nueva question, que se recupera mediante la id
-	//que se le pasa por parámetro.
+	// Metodo que recupera un survey y le modifica la colecciÃ³n de question
+	// aÃ±adiendole una nueva question, que se recupera mediante la id
+	//que se le pasa por parÃ¡metro.
 	/**
 	 * 
-	 * @param id hace referencia al identificador de un Survey (Votación).
+	 * @param id hace referencia al identificador de un Survey (VotaciÃ³n).
 	 * @param questionId hace referencia al identificador de una Question (Pregunta).
-	 * @param esFinal hace referencia a una propiedad de tipo Boolean que determina si es la última pregunta para
-	 * añadir al survey (Votación).
+	 * @param esFinal hace referencia a una propiedad de tipo Boolean que determina si es la Ãºltima pregunta para
+	 * aÃ±adir al survey (VotaciÃ³n).
 	 */
 	public Survey saveAddQuestion(int id, int questionId, boolean esFinal) {
 		Survey survey = surveyRepository.findOne(id);
@@ -219,7 +221,7 @@ public class SurveyService {
 	// Metodo que persiste una survey en la base de datos.
 	/**
 	 * 
-	 * @param survey es un objeto de tipo Survey (Votación).
+	 * @param survey es un objeto de tipo Survey (VotaciÃ³n).
 	 */
 	public void saveFinal(Survey survey) {
 		Assert.notNull(survey);
