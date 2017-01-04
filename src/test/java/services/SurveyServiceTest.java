@@ -38,13 +38,19 @@ public class SurveyServiceTest extends AbstractTest{
 	
 	@Test
 	public void testFindOne(){
-		Survey res;
-		
-		res = surveyService.findOne(1);
+		int id=0;
 		System.out.println("\n\n\n/////////////////////////////////////////////////////////////////////////////////");
 		System.out.println("///////////////////////////// Test find one /////////////////////////////////////////");
 		System.out.println("/////////////////////////////////////////////////////////////////////////////////\n");
-		System.out.println(res.getTitle());
+		System.out.println("Todos los surveys: ");
+		for(Survey s: surveyService.allSurveys()){
+			System.out.println("Id " + s.getId() + ", " + s );
+			id=s.getId();
+		}
+		System.out.println("Mostraremos el último survey almacenando el id del último de la lista");
+		System.out.println("");
+		System.out.println(surveyService.findOne(id));
+		System.out.println("");
 		
 	}
 	@Test
@@ -80,31 +86,50 @@ public class SurveyServiceTest extends AbstractTest{
 		res.setTipo("Cuestionario");
 		res.setPostalCode("41015");
 		
-		surveyService.save(res,user);
+		
 		
 		System.out.println("\n\n\n/////////////////////////////////////////////////////////////////////////////////");
 		System.out.println("////////////// Test de guardar una encuesta de forma persistente //////////////////");
 		System.out.println("/////////////////////////////////////////////////////////////////////////////////\n");
 		
-		System.out.println("La encuesta se ha guardado con éxito");
-		
+		System.out.println("Todos los surveys: ");
+		for(Survey s: surveyService.allSurveys()){
+			System.out.println(s);
+		}
+		System.out.println("");
+		System.out.println("Guardamos el survey: " + res);
+		System.out.println("");
+		surveyService.save(res,user);
+		System.out.println("Todos los surveys: ");
+		for(Survey s: surveyService.allSurveys()){
+			System.out.println(s);
+		}
+		System.out.println("");
 	}
 
 	@Test
 	public void testDelete(){
-		
-		Survey res;
-		
-		//Buscar ID para cada prueba
-		res = surveyService.findOne(1);
-		surveyService.delete(res.getId());
+		Survey res=new Survey();
 		
 		System.out.println("\n\n\n//////////////////////////////////////////////////////////////////////////////////");
 		System.out.println("////////////// Test de eliminar una encuesta de forma persistente //////////////////");
 		System.out.println("//////////////////////////////////////////////////////////////////////////////////\n");
-		
-		System.out.println("La encuesta se ha eliminado con éxito");
+		System.out.println("Todos los surveys: ");
+		for(Survey s: surveyService.allSurveys()){
+			System.out.println(s);
+			res=s;
+		}
+		System.out.println("");
+		System.out.println("Eliminamos el último survey");
+		System.out.println("");
+		surveyService.delete(res.getId());
+		System.out.println("Todos los surveys: ");
+		for(Survey s: surveyService.allSurveys()){
+			System.out.println(s);
+		}
+		System.out.println("");
 	}
+		
 	
 	
 	
