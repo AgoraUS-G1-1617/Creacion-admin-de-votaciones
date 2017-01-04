@@ -23,7 +23,7 @@ import utilities.AbstractTest;
 		"classpath:spring/datasource.xml",
 		"classpath:spring/config/packages.xml" })
 @Transactional
-@TransactionConfiguration(defaultRollback = false)
+@TransactionConfiguration(defaultRollback = true)
 public class SurveyServiceTest extends AbstractTest{
 
 	//Service under test --------------------------------
@@ -53,6 +53,25 @@ public class SurveyServiceTest extends AbstractTest{
 		System.out.println("");
 		
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testFindOneNegativo(){
+		int id=485;
+		System.out.println("\n\n\n/////////////////////////////////////////////////////////////////////////////////");
+		System.out.println("///////////////////////////// Test find one negativo /////////////////////////////////////////");
+		System.out.println("/////////////////////////////////////////////////////////////////////////////////\n");
+		System.out.println("Todos los surveys: ");
+		for(Survey s: surveyService.allSurveys()){
+			System.out.println("Id " + s.getId() + ", " + s );
+		}
+		System.out.println("Intentaremos mostrar un survey con id inexistente, en este caso: " + id);
+		System.out.println("");
+		System.out.println("Si tras esto, el test no muestra nada más, pero la ejecución JUnit ha sido correcta, todo ha ido bien");
+		System.out.println("");
+		System.out.println(surveyService.findOne(id));
+		System.out.println("");
+		
+	}
 	@Test
 	public void testCreate(){
 		Survey res;
@@ -71,7 +90,7 @@ public class SurveyServiceTest extends AbstractTest{
 		Survey res;
 		Date startDate;
 		Date endDate;
-		String user ="";
+		String user ="pollale";
 		
 		startDate= new Date();
 		endDate= new Date();
@@ -106,6 +125,47 @@ public class SurveyServiceTest extends AbstractTest{
 		}
 		System.out.println("");
 	}
+	
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testSaveNegativo(){
+		Survey res;
+		Date startDate;
+		Date endDate;
+		String user ="pollale";
+		startDate= new Date();
+		endDate= new Date();
+		res = surveyService.create();
+		res.setTitle("Cuestionario prueba");
+		res.setDescription("Descripcion de cuestionerio de pruebas");
+		res.setStartDate(startDate);
+		res.setEndDate(endDate);
+		res.setCensus(7);
+		res.setTipo("Cuestionario");
+		res.setPostalCode("4101");
+		
+		System.out.println("\n\n\n/////////////////////////////////////////////////////////////////////////////////");
+		System.out.println("////////////// Test negativo de guardar una encuesta //////////////////");
+		System.out.println("/////////////////////////////////////////////////////////////////////////////////\n");
+		
+		System.out.println("Todos los surveys: ");
+		for(Survey s: surveyService.allSurveys()){
+			System.out.println(s);
+		}
+		System.out.println("");
+		System.out.println("Intentamos guardar con un código postal menor que 5 el siguiente survey");
+		System.out.println(res);
+		System.out.println("");
+		System.out.println("Si tras esto, el test no muestra nada más, pero la ejecución JUnit ha sido correcta, todo ha ido bien");
+		System.out.println("");
+		surveyService.save(res,user);
+		System.out.println("Todos los surveys: ");
+		for(Survey s: surveyService.allSurveys()){
+			System.out.println(s);
+		}
+		System.out.println("");
+	}
+	
 
 	@Test
 	public void testDelete(){
@@ -123,6 +183,28 @@ public class SurveyServiceTest extends AbstractTest{
 		System.out.println("Eliminamos el último survey");
 		System.out.println("");
 		surveyService.delete(res.getId());
+		System.out.println("Todos los surveys: ");
+		for(Survey s: surveyService.allSurveys()){
+			System.out.println(s);
+		}
+		System.out.println("");
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void testDeleteNegativo(){
+		System.out.println("\n\n\n//////////////////////////////////////////////////////////////////////////////////");
+		System.out.println("////////////// Test negativo de eliminar una encuesta de forma persistente //////////////////");
+		System.out.println("//////////////////////////////////////////////////////////////////////////////////\n");
+		System.out.println("Todos los surveys: ");
+		for(Survey s: surveyService.allSurveys()){
+			System.out.println(s);
+		}
+		System.out.println("");
+		System.out.println("Eliminamos un survey con id inexistente");
+		System.out.println("");
+		System.out.println("Si tras esto, el test no muestra nada más, pero la ejecución JUnit ha sido correcta, todo ha ido bien");
+		System.out.println("");
+		surveyService.delete(485);
 		System.out.println("Todos los surveys: ");
 		for(Survey s: surveyService.allSurveys()){
 			System.out.println(s);

@@ -18,7 +18,7 @@ import domain.Question;
 		"classpath:spring/datasource.xml",
 		"classpath:spring/config/packages.xml" })
 @Transactional
-@TransactionConfiguration(defaultRollback = false)
+@TransactionConfiguration(defaultRollback = true)
 public class QuestionServiceTest extends AbstractTest{
 	
 
