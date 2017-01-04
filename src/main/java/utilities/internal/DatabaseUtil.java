@@ -31,6 +31,7 @@ import javax.persistence.metamodel.Metamodel;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.cfg.ImprovedNamingStrategy;
 import org.hibernate.dialect.Dialect;
 import org.hibernate.internal.util.ReflectHelper;
 import org.hibernate.jdbc.Work;
@@ -60,6 +61,7 @@ public class DatabaseUtil {
 		
 		configuration = buildConfiguration();	
 		
+		configuration.setNamingStrategy(ImprovedNamingStrategy.class.newInstance());
 		entityTransaction = entityManager.getTransaction();
 	}
 	
