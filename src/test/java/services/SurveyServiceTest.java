@@ -77,7 +77,8 @@ public class SurveyServiceTest extends AbstractTest{
 		res.setStartDate(startDate);
 		res.setEndDate(endDate);
 		res.setCensus(7);
-		res.setTipo("Cuestionario");;
+		res.setTipo("Cuestionario");
+		res.setPostalCode("41015");
 		
 		surveyService.save(res,user);
 		
