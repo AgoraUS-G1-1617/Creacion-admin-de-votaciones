@@ -95,8 +95,7 @@ public class SurveyService {
 	 */
 	public List<Survey> allFinishedSurveys() {
 
-		Date now = new Date(System.currentTimeMillis());
-		List<Survey> res = surveyRepository.allFinishedSurveys(now);
+		List<Survey> res = surveyRepository.allFinishedSurveys();
 		return res;
 	}
 	
