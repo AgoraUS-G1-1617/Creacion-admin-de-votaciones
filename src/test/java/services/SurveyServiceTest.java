@@ -1,8 +1,8 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,10 +12,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import domain.Survey;
-
 import utilities.AbstractTest;
+import domain.Question;
+import domain.Survey;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -29,6 +28,9 @@ public class SurveyServiceTest extends AbstractTest{
 	//Service under test --------------------------------
 	@Autowired
 	private SurveyService surveyService;
+	
+	@Autowired
+	private QuestionService questionService;
 	
 	//Supporting Services -------------------------
 	
@@ -237,11 +239,28 @@ public class SurveyServiceTest extends AbstractTest{
 	public void testsaveQuestion(){
 		
 		
-		surveyService.saveAddQuestion(1, 3, false);
-		
 		System.out.println("\n\n\n//////////////////////////////////////////////////////////////////////////////////");
 		System.out.println("////////////// Test añadir a una encuesta una pregunta //////////////////");
 		System.out.println("//////////////////////////////////////////////////////////////////////////////////\n");
+		
+		System.out.println("Encuesta:");
+		Survey s = new Survey();
+		s.setTitle("Encuesta de prueba");
+		s.setDescription("Descripción");
+		s.setCensus(1500);
+		s.setEndDate(new Date());
+		s.setStartDate(new Date());
+		s.setPostalCode("41500");
+		s.setTipo("Tipo");
+		s.setUsernameCreator("Usuario");
+		s.setQuestions(new ArrayList<Question>());
+		s = surveyService.findOne(surveyService.save(s, s.getUsernameCreator()));
+		System.out.println(s.getId() + " Preguntas: " + s.getQuestions());
+		Question q = new Question();
+		q.setText("Pregunta de prueba");
+		q = questionService.findOne(questionService.saveAndFlush(q));
+		surveyService.saveAddQuestion(s.getId(), q.getId(), true);
+		System.out.println("Preguntas despues de añadir: " + s.getQuestions());
 		
 		System.out.println("La pregunta se ha añadido con exito");
 
