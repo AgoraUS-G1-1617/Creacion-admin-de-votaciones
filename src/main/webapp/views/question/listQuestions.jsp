@@ -14,7 +14,7 @@
 		<display:column property="text"  titleKey="survey.question" />
 		
 		<display:column>
-			<a href="question/delete.do?questionId=${row.id}"><spring:message
+			<a href="question/delete.do?questionId=${row.id}" onclick="return confirm('<spring:message code="survey.confirm.delete" />')"><spring:message
 					code="survey.delete"/></a>
 		</display:column>	
 			

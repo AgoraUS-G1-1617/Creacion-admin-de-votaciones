@@ -85,8 +85,10 @@ public class SurveyService {
 	 * una llamada al repositorio de la entidad Survey (VotaciÃ³n).
 	 */ 
 	public Survey findOne(int id) {
-		Assert.notNull(id);
-		return surveyRepository.findOne(id);
+		Assert.isTrue(id!=0);
+		Survey  s = surveyRepository.findOne(id);
+		Assert.notNull(s);
+		return s;
 	}
 	// MÃ©todo de interacciÃ³n con el subsistema de VisualizaciÃ³n
 	/**

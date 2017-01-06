@@ -9,8 +9,8 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import utilities.AbstractTest;
-
 import domain.Question;
+import domain.Survey;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -18,7 +18,7 @@ import domain.Question;
 		"classpath:spring/datasource.xml",
 		"classpath:spring/config/packages.xml" })
 @Transactional
-@TransactionConfiguration(defaultRollback = false)
+@TransactionConfiguration(defaultRollback = true)
 public class QuestionServiceTest extends AbstractTest{
 	
 
@@ -26,10 +26,27 @@ public class QuestionServiceTest extends AbstractTest{
 	@Autowired
 	private QuestionService questionService;
 	
+	@Autowired
+	private SurveyService surveyService;
+	
 	//Supporting Services -------------------------
 	
 
 	//Tests ------------------------------------------
+	
+	@Test
+	public void testQuestionsListing(){
+		
+
+		System.out.println("\n\n\n/////////////////////////////////////////////////////////////////////////////////");
+		System.out.println("///////////////////////////// Test find all questions /////////////////////////////////////////");
+		System.out.println("/////////////////////////////////////////////////////////////////////////////////\n");
+
+		
+		Survey s = surveyService.findOne(5);
+		System.out.println("Listando cuestiones de: " + s);
+		System.out.println(s.getQuestions());
+	}
 	
 	@Test
 	public void testFindOne(){
