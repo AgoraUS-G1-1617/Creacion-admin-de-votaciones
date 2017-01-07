@@ -417,27 +417,16 @@ public class SurveyController {
 		Date now = new Date(System.currentTimeMillis() - 1000);
 		System.out.println(survey.getStartDate());
 		System.out.println(survey.getEndDate());
-		if (bindingResult.hasErrors() || survey.getStartDate() == null || survey.getEndDate() == null
-				|| survey.getTitle() == "" || survey.getTipo() == null || now.after(survey.getStartDate())
-				|| now.after(survey.getEndDate()) || survey.getStartDate().after(survey.getEndDate()) ||
-				!survey.getPostalCode().matches("^\\d\\d\\d\\d\\d$")) {
+
+		if (bindingResult.hasErrors()) {
 			System.out.println(bindingResult.toString());
 			result = new ModelAndView("survey/create");
 			result.addObject("actionURL", "survey/create.do");
 			result.addObject("survey", survey);
-			if (survey.getStartDate() == null || survey.getEndDate() == null || survey.getTitle() == ""
-					|| survey.getTipo() == null) {
-				result.addObject("message", "survey.fields.empty");
+			if (survey.getTitle().length()<5 || survey.getTitle().length()>100) {
+				result.addObject("message", "survey.title.length");
 			}
-			if (now.after(survey.getStartDate()) || now.after(survey.getEndDate())) {
-				result.addObject("message", "survey.dates.future");
-			}
-			if (survey.getStartDate().after(survey.getEndDate())) {
-				result.addObject("message", "survey.start.end");
-			}
-			if (!survey.getPostalCode().matches("^\\d\\d\\d\\d\\d$")) {
-				result.addObject("message", "survey.postalCode.matches");
-			}
+			
 		} else {
 			try {
 				Integer s2 = surveyService.save(survey,user);
@@ -464,6 +453,9 @@ public class SurveyController {
 				}
 				if (!survey.getPostalCode().matches("^\\d\\d\\d\\d\\d$")) {
 					result.addObject("message", "survey.postalCode.matches");
+				}
+				if (survey.getTitle().length()<5 || survey.getTitle().length()>100) {
+					result.addObject("message", "survey.title.length");
 				}
 			}
 		}

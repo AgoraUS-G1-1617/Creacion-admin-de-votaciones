@@ -36,22 +36,14 @@ public class SurveyService {
 	public Integer save(Survey s,String user) {
 		Assert.notNull(s);
 		Date now = new Date(System.currentTimeMillis() - 1000);
-		if (s.getStartDate() == null || s.getEndDate() == null || s.getTitle() == "" || s.getTipo() == null) {
-			throw new IllegalArgumentException("Null");
-		}
+
 		if (now.after(s.getStartDate()) || now.after(s.getEndDate())) {
-			throw new IllegalArgumentException("Dates future");
+			throw new IllegalArgumentException("Start date and end date must be in the future");
 		}
 		if (s.getStartDate().after(s.getEndDate())) {
 			throw new IllegalArgumentException("End must be future than start");
 		}
-		if (s.getPostalCode().length()!=5) {
-			throw new IllegalArgumentException("Postal Code must have 5 digits");
-		}
-		for(int i=0;i<s.getPostalCode().length();i++){
-			if(!Character.isDigit(s.getPostalCode().charAt(i)))
-					throw new IllegalArgumentException("Postal Code must have 5 digits");
-		}
+
 		// CAMBIAR POR EL USUARIO LOGEADO Y CENSO POR LA ID DEL CENSO
 
 		// Se le pone 0 temporalmente. Cuando guardamos despues de crear
