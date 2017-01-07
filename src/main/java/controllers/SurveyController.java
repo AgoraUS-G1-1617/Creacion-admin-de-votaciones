@@ -419,7 +419,8 @@ public class SurveyController {
 		System.out.println(survey.getEndDate());
 		if (bindingResult.hasErrors() || survey.getStartDate() == null || survey.getEndDate() == null
 				|| survey.getTitle() == "" || survey.getTipo() == null || now.after(survey.getStartDate())
-				|| now.after(survey.getEndDate()) || survey.getStartDate().after(survey.getEndDate())) {
+				|| now.after(survey.getEndDate()) || survey.getStartDate().after(survey.getEndDate()) ||
+				!survey.getPostalCode().matches("^\\d\\d\\d\\d\\d$")) {
 			System.out.println(bindingResult.toString());
 			result = new ModelAndView("survey/create");
 			result.addObject("actionURL", "survey/create.do");
@@ -434,13 +435,17 @@ public class SurveyController {
 			if (survey.getStartDate().after(survey.getEndDate())) {
 				result.addObject("message", "survey.start.end");
 			}
+			if (!survey.getPostalCode().matches("^\\d\\d\\d\\d\\d$")) {
+				result.addObject("message", "survey.postalCode.matches");
+			}
 		} else {
 			try {
 				Integer s2 = surveyService.save(survey,user);
 				result = new ModelAndView("redirect:/survey/addQuestion.do");
 				result.addObject("surveyId", s2);
 			} catch (Throwable oops) {
-				result = new ModelAndView("/survey/create");
+				result = new ModelAndView("survey/create");
+				result.addObject("actionURL", "survey/create.do");
 				result.addObject("message", "survey.commit.error");
 				result.addObject("survey", survey);
 				if (survey.getStartDate() == null || survey.getEndDate() == null || survey.getTitle() == ""
@@ -456,6 +461,9 @@ public class SurveyController {
 				}
 				if (survey.getStartDate().after(survey.getEndDate())) {
 					result.addObject("message", "survey.start.end");
+				}
+				if (!survey.getPostalCode().matches("^\\d\\d\\d\\d\\d$")) {
+					result.addObject("message", "survey.postalCode.matches");
 				}
 			}
 		}

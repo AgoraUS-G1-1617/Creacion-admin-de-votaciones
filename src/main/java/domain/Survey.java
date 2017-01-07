@@ -11,7 +11,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
@@ -163,7 +162,7 @@ public class Survey extends DomainEntity implements Serializable {
 	
 	//Importante: El campo postalCode está orientado hacia encuestas realizadas en España,
 	//poseyendo así el formato nacional predeterminado.
-	@Pattern(regexp = "^\\d\\d\\d\\d\\d$")
+	//@Pattern(regexp = "^\\d\\d\\d\\d\\d$")
 	@NotBlank
 	public String getPostalCode() {
 		return postalCode;
