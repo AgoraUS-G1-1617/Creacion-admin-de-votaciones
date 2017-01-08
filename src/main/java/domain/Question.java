@@ -2,6 +2,8 @@ package domain;
 
 import javax.persistence.Entity;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 public class Question extends DomainEntity {
 	/**
@@ -26,6 +28,7 @@ public class Question extends DomainEntity {
 	 * 
 	 * @return Este metodo devuelve el texto de la question (pregunta).
 	 */
+	@NotBlank
 	public String getText() {
 		return text;
 	}

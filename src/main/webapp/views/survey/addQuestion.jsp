@@ -69,6 +69,10 @@
 								<spring:message code="survey.tipo.cerrado" />
 							</jstl:if></td>
 					</tr>
+					<tr>
+						<td class="tdnombre"><spring:message code="survey.postalCode" /> :</td>
+						<td style="text-align: center;"><jstl:out value="${survey.postalCode}"></jstl:out></td>
+					</tr>
 					<jstl:if test="${survey.questions.size()>0}">
 						<jstl:forEach var="question" items="${survey.questions}">
 							<tr>
@@ -85,6 +89,7 @@
 					</tr>
 
 				</table>
+				
 				<input type="submit" name="save"
 					value="<spring:message code="survey.add.question" />" /> <input
 					type="button"

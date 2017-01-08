@@ -26,7 +26,7 @@ public class QuestionService extends DomainEntity{
 	public Question create(Integer surveyId){
 		Question o = new Question();
 		o.setSurveyId(surveyId);
-		questionRepository.saveAndFlush(o);
+		//questionRepository.saveAndFlush(o);
 		return o;
 	}
 
@@ -40,7 +40,7 @@ public class QuestionService extends DomainEntity{
 		Question o = new Question();
 		o.setText(question);
 		
-		questionRepository.saveAndFlush(o);
+		//questionRepository.saveAndFlush(o);
 		return o;
 	}
 
