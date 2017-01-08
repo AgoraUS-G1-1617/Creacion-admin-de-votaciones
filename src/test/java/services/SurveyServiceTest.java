@@ -146,7 +146,7 @@ public class SurveyServiceTest extends AbstractTest{
 		res.setEndDate(endDate);
 		res.setCensus(7);
 		res.setTipo("Cuestionario");
-		res.setPostalCode("4101");
+		res.setPostalCode("");
 		
 		System.out.println("\n\n\n/////////////////////////////////////////////////////////////////////////////////");
 		System.out.println("////////////// Test negativo de guardar una encuesta //////////////////");
@@ -263,6 +263,41 @@ public class SurveyServiceTest extends AbstractTest{
 		q = questionService.findOne(questionService.saveAndFlush(q));
 		surveyService.saveAddQuestion(s.getId(), q.getId(), true);
 		System.out.println("Preguntas despues de añadir: " + s.getQuestions());
+		
+		System.out.println("La pregunta se ha añadido con exito");
+
+	}
+	
+	@Test(expected = ConstraintViolationException.class)
+	public void testsaveQuestionNegativo(){
+		
+		
+		System.out.println("\n\n\n//////////////////////////////////////////////////////////////////////////////////");
+		System.out.println("////////////// Test negativo de añadir a una encuesta una pregunta //////////////////");
+		System.out.println("//////////////////////////////////////////////////////////////////////////////////\n");
+		
+		System.out.println("Encuesta:");
+		Survey s = new Survey();
+		s.setTitle("Encuesta de prueba");
+		s.setDescription("Descripción");
+		s.setCensus(1500);
+		s.setEndDate(new Date());
+		s.setStartDate(new Date());
+		s.setPostalCode("41500");
+		s.setTipo("Tipo");
+		s.setUsernameCreator("Usuario");
+		s.setQuestions(new ArrayList<Question>());
+		s = surveyService.findOne(surveyService.save(s, s.getUsernameCreator()));
+		System.out.println(s.getId() + " Preguntas: " + s.getQuestions());
+		Question q = new Question();
+		q.setText("");
+		q = questionService.findOne(questionService.saveAndFlush(q));
+		System.out.println("Intentamos añadir una question con texto vacío");
+		System.out.println("");
+		System.out.println("Si tras esto, el test no muestra nada más, pero la ejecución JUnit ha sido correcta, todo ha ido bien");
+		System.out.println("");
+		Survey s2 = surveyService.saveAddQuestion(s.getId(), q.getId(), true);
+		System.out.println("Preguntas despues de añadir: " + s2.getQuestions());
 		
 		System.out.println("La pregunta se ha añadido con exito");
 
