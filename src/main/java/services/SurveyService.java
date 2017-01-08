@@ -1,4 +1,4 @@
-package services;
+﻿package services;
 import java.util.Collection;
 
 import java.util.Date;
@@ -36,15 +36,14 @@ public class SurveyService {
 	public Integer save(Survey s,String user) {
 		Assert.notNull(s);
 		Date now = new Date(System.currentTimeMillis() - 1000);
-		if (s.getStartDate() == null || s.getEndDate() == null || s.getTitle() == "" || s.getTipo() == null) {
-			throw new IllegalArgumentException("Null");
-		}
+
 		if (now.after(s.getStartDate()) || now.after(s.getEndDate())) {
-			throw new IllegalArgumentException("Dates future");
+			throw new IllegalArgumentException("Start date and end date must be in the future");
 		}
 		if (s.getStartDate().after(s.getEndDate())) {
 			throw new IllegalArgumentException("End must be future than start");
 		}
+
 //		if (s.getPostalCode().length()!=5) {
 //			throw new IllegalArgumentException("Postal Code must have 5 digits");
 //		}
@@ -52,6 +51,7 @@ public class SurveyService {
 //			if(!Character.isDigit(s.getPostalCode().charAt(i)))
 //					throw new IllegalArgumentException("Postal Code must have 5 digits");
 //		}
+
 		// CAMBIAR POR EL USUARIO LOGEADO Y CENSO POR LA ID DEL CENSO
 
 		// Se le pone 0 temporalmente. Cuando guardamos despues de crear
@@ -184,7 +184,7 @@ public class SurveyService {
 	//dicho metodo
 	/**
 	 * 
-	 * @return Este metodod evuelve un objeto de tipo Survey (VotaciÃ³n).
+	 * @return Este metodod devuelve un objeto de tipo Survey (VotaciÃ³n).
 	 */
 	public Survey create() {
 		Survey result;
@@ -233,6 +233,30 @@ public class SurveyService {
 		Survey s = surveyRepository.findOne(surveyId);
 		s.setCensus(censoId);
 		saveFinal(s);
+	}
+	
+	public Collection<Survey> findSurveysFromSevilla(){
+		Collection<Survey> s = surveyRepository.findSurveysFromSevilla();
+		Assert.notNull(s);
+		return s;
+	}
+	
+	public Collection<Survey> findSurveysAlreadyStarted(){
+		Collection<Survey> s = surveyRepository.findSurveysAlreadyStarted();
+		Assert.notNull(s);
+		return s;
+	}
+	
+	public Double ratioOfSurveysWhichHaveNotStartedYet(){
+		Double r = surveyRepository.ratioOfSurveysWhichHaveNotStartedYet();
+		Assert.notNull(r);
+		return r;
+	}
+	
+	public Double averageOfQuestionsPerSurvey(){
+		Double a = surveyRepository.averageOfQuestionsPerSurvey();
+		Assert.notNull(a);
+		return a;
 	}
 	
 }

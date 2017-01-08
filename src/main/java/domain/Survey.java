@@ -11,6 +11,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
@@ -51,7 +52,7 @@ public class Survey extends DomainEntity implements Serializable {
 	*/
 
 	@NotBlank
-	@Length(min = 5, max = 100, message = "The field must be between 5 and 10 characters")
+	@Length(min = 5, max = 100, message = "The field must be between 5 and 100 characters")
 	public String getTitle() {
 		return title;
 	}
@@ -88,6 +89,7 @@ public class Survey extends DomainEntity implements Serializable {
 	 * @return Este metodo devuelve la fecha de inicio de la votación.
 	 */
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@NotNull
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -106,8 +108,8 @@ public class Survey extends DomainEntity implements Serializable {
 	 * 
 	 * @return Este metodo devuelve la fecha fin de la votación.
 	 */
-
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@NotNull
 	public Date getEndDate() {
 		return endDate;
 	}
@@ -126,6 +128,7 @@ public class Survey extends DomainEntity implements Serializable {
 	 * 
 	 * @return devuelve el tipo de censo (abierto o cerrado).
 	 */
+	@NotNull
 	public String getTipo() {
 		return tipo;
 	}

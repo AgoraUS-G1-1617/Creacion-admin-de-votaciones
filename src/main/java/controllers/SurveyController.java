@@ -173,17 +173,17 @@ public class SurveyController {
 	@RequestMapping(value = "/addQuestion", method = RequestMethod.GET)
 	public ModelAndView addQuestion(@RequestParam Integer surveyId) {
 		ModelAndView result;
+		Question question = null;
 		try{
 		Survey survey = surveyService.findOne(surveyId);
-		Question question = questionService.create(surveyId);
-		question.setSurveyId(surveyId);
+		question = questionService.create(surveyId);
 		result = new ModelAndView("survey/addQuestion");
 		result.addObject("actionURL", "survey/addQuestion.do");
 		result.addObject("survey", survey);
 		result.addObject("questio", question);
 		}
 		catch(Throwable oops){
-			result = new ModelAndView("survey/create.do");
+			result = new ModelAndView("redirect:/question/listQuestions.do?surveyId="+surveyId);			
 		}
 		return result;
 	}
@@ -203,14 +203,11 @@ public class SurveyController {
 		ModelAndView result;
 		Assert.notNull(questio);
 		Survey survey = surveyService.findOne(questio.getSurveyId());
-		if (bindingResult.hasErrors()||questio.getText() == "") {
-			result = new ModelAndView("survey/create");
-			result.addObject("actionURL", "survey/create.do");
-			result.addObject("surveyId", survey.getId());
+		if (bindingResult.hasErrors()) {
+			result = new ModelAndView("survey/addQuestion");
+			result.addObject("actionURL", "survey/addQuestion.do");
+			result.addObject("survey", survey);
 			result.addObject("questio", questio);
-			if(questio.getText() == ""){
-			result.addObject("message","survey.fields.empty");
-			}
 		} else {
 			try {
 				int idQuestion = questionService.saveAndFlush(questio);
@@ -227,9 +224,6 @@ public class SurveyController {
 				result.addObject("actionURL", "survey/addQuestion.do");
 				result.addObject("survey", survey.getId());
 				result.addObject("questio", questio);
-				if(questio.getText() == ""){
-					result.addObject("message","survey.fields.empty");
-					}
 			}
 		}
 		return result;
@@ -255,13 +249,15 @@ public class SurveyController {
 		Assert.notNull(questio);
 		Survey survey = surveyService.findOne(questio.getSurveyId());
 		if (bindingResult.hasErrors()|| questio.getText() == "") {
-			result = new ModelAndView("survey/create"); //Anteriormente "vote/addQuestion"
+			result = new ModelAndView("redirect:/survey/addQuestion.do?surveyId="+
+						questio.getSurveyId()); //Anteriormente "vote/addQuestion"
+			result.addObject("message", "question.commit.error");
 			result.addObject("actionURL", "survey/addQuestion.do");
 			result.addObject("survey", survey.getId());
 			result.addObject("questio", questio);
 			if(questio.getText() == ""){
-				result.addObject("message","survey.fields.empty");
-				}
+				result.addObject("message","question.fields.empty");
+			}
 		} else {
 			try {
 				int idQuestion = questionService.saveAndFlush(questio);
@@ -284,14 +280,15 @@ public class SurveyController {
 //				httpRequest.generaPeticionDeliberations(survey.getId(), survey.getTitle());
 				result = new ModelAndView("redirect:/survey/details.do?surveyId=" + survey.getId());
 			} catch (Throwable oops) {
-				result = new ModelAndView("vote/addQuestion");
-				result.addObject("message", "survey.commit.error");
-				result.addObject("actionURL", "vote/addQuestion.do");
+				result = new ModelAndView("redirect:/survey/addQuestion.do?surveyId="+
+						questio.getSurveyId());
+				result.addObject("message", "question.commit.error");
+				result.addObject("actionURL", "survey/addQuestion.do");
 				result.addObject("survey", survey);
 				result.addObject("questio", questio);
 				if(questio.getText() == ""){
-					result.addObject("message","survey.fields.empty");
-					}
+					result.addObject("message","question.fields.empty");
+				}
 			}
 		}
 		return result;
@@ -417,30 +414,24 @@ public class SurveyController {
 		Date now = new Date(System.currentTimeMillis() - 1000);
 		System.out.println(survey.getStartDate());
 		System.out.println(survey.getEndDate());
-		if (bindingResult.hasErrors() || survey.getStartDate() == null || survey.getEndDate() == null
-				|| survey.getTitle() == "" || survey.getTipo() == null || now.after(survey.getStartDate())
-				|| now.after(survey.getEndDate()) || survey.getStartDate().after(survey.getEndDate())) {
+
+		if (bindingResult.hasErrors()) {
 			System.out.println(bindingResult.toString());
 			result = new ModelAndView("survey/create");
 			result.addObject("actionURL", "survey/create.do");
 			result.addObject("survey", survey);
-			if (survey.getStartDate() == null || survey.getEndDate() == null || survey.getTitle() == ""
-					|| survey.getTipo() == null) {
-				result.addObject("message", "survey.fields.empty");
+			if (survey.getTitle().length()<5 || survey.getTitle().length()>100) {
+				result.addObject("message", "survey.title.length");
 			}
-			if (now.after(survey.getStartDate()) || now.after(survey.getEndDate())) {
-				result.addObject("message", "survey.dates.future");
-			}
-			if (survey.getStartDate().after(survey.getEndDate())) {
-				result.addObject("message", "survey.start.end");
-			}
+			
 		} else {
 			try {
 				Integer s2 = surveyService.save(survey,user);
 				result = new ModelAndView("redirect:/survey/addQuestion.do");
 				result.addObject("surveyId", s2);
 			} catch (Throwable oops) {
-				result = new ModelAndView("/survey/create");
+				result = new ModelAndView("survey/create");
+				result.addObject("actionURL", "survey/create.do");
 				result.addObject("message", "survey.commit.error");
 				result.addObject("survey", survey);
 				if (survey.getStartDate() == null || survey.getEndDate() == null || survey.getTitle() == ""
@@ -457,11 +448,36 @@ public class SurveyController {
 				if (survey.getStartDate().after(survey.getEndDate())) {
 					result.addObject("message", "survey.start.end");
 				}
+				if (!survey.getPostalCode().matches("^\\d\\d\\d\\d\\d$")) {
+					result.addObject("message", "survey.postalCode.matches");
+				}
+				if (survey.getTitle().length()<5 || survey.getTitle().length()>100) {
+					result.addObject("message", "survey.title.length");
+				}
 			}
 		}
 		return result;
 	}
+	
+	//Show dashboard -----------------------
+		@RequestMapping(value="/dashboard", method=RequestMethod.GET)
+		public ModelAndView dashboard() {
+			ModelAndView result;	
 
+			Collection<Survey> findSurveysFromSevilla = surveyService.findSurveysFromSevilla();
+			Collection<Survey> findSurveysAlreadyStarted = surveyService.findSurveysAlreadyStarted();
+			Double ratioOfSurveysWhichHaveNotStartedYet = surveyService.ratioOfSurveysWhichHaveNotStartedYet();
+			Double averageOfQuestionsPerSurvey = surveyService.averageOfQuestionsPerSurvey();
+			
+			result = new ModelAndView("survey/dashboard");
+			
+			result.addObject("findSurveysFromSevilla", findSurveysFromSevilla);
+			result.addObject("findSurveysAlreadyStarted", findSurveysAlreadyStarted);
+			result.addObject("ratioOfSurveysWhichHaveNotStartedYet", ratioOfSurveysWhichHaveNotStartedYet);
+			result.addObject("averageOfQuestionsPerSurvey", averageOfQuestionsPerSurvey);
+		
+			return result;
+		}
 
 
 }

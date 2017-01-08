@@ -52,6 +52,10 @@
 		<li><a href="survey/create.do"><spring:message
 					code="master.page.create">
 				</spring:message></a></li>
+				
+		<li><a href="survey/dashboard.do"><spring:message
+			code="master.page.dashboard">
+		</spring:message></a></li>
 
 		<li><a href=""><spring:message code="master.page.censo">
 				</spring:message></a></li>
