@@ -11,6 +11,7 @@
 package security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,12 +25,12 @@ import org.springframework.util.Assert;
 @Service
 @Transactional
 public class LoginService implements UserDetailsService {
-	
+
 	// Managed repository -----------------------------------------------------
 
 	@Autowired
 	UserAccountRepository userRepository;
-	
+
 	// Business methods -------------------------------------------------------
 
 	public UserDetails loadUserByUsername(String username)
@@ -39,8 +40,9 @@ public class LoginService implements UserDetailsService {
 		UserDetails result;
 
 		result = userRepository.findByUsername(username);
-		Assert.notNull(result);		
-		// WARNING: The following sentences prevent lazy initialisation problems!
+		Assert.notNull(result);
+		// WARNING: The following sentences prevent lazy initialisation
+		// problems!
 		Assert.notNull(result.getAuthorities());
 		result.getAuthorities().size();
 
@@ -71,6 +73,30 @@ public class LoginService implements UserDetailsService {
 		Assert.isTrue(result.getId() != 0);
 
 		return result;
+	}
+
+	public String verifyToken(UserAccount userAccount) {
+		String res;
+
+		// para generar el token se envia el password con MD5
+
+		String passwordMd5 = new Md5PasswordEncoder().encodePassword(
+				userAccount.getPassword(), null);
+
+		// depues se vuelve a calcular el md5 del password + nombre de usario
+		// antes
+
+		passwordMd5 = userAccount.getUsername()
+				+ new Md5PasswordEncoder().encodePassword(passwordMd5, null);
+
+		// despues de vuelve a calcular el md5 y se le añade el nombre mas dos
+		// puntos
+
+		passwordMd5 = userAccount.getUsername() + ":"
+				+ new Md5PasswordEncoder().encodePassword(passwordMd5, null);
+		res = passwordMd5;
+
+		return res;
 	}
 
 }
