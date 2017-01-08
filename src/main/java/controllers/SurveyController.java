@@ -458,7 +458,26 @@ public class SurveyController {
 		}
 		return result;
 	}
+	
+	//Show dashboard -----------------------
+		@RequestMapping(value="/dashboard", method=RequestMethod.GET)
+		public ModelAndView dashboard() {
+			ModelAndView result;	
 
+			Collection<Survey> findSurveysFromSevilla = surveyService.findSurveysFromSevilla();
+			Collection<Survey> findSurveysAlreadyStarted = surveyService.findSurveysAlreadyStarted();
+			Double ratioOfSurveysWhichHaveNotStartedYet = surveyService.ratioOfSurveysWhichHaveNotStartedYet();
+			Double averageOfQuestionsPerSurvey = surveyService.averageOfQuestionsPerSurvey();
+			
+			result = new ModelAndView("survey/dashboard");
+			
+			result.addObject("findSurveysFromSevilla", findSurveysFromSevilla);
+			result.addObject("findSurveysAlreadyStarted", findSurveysAlreadyStarted);
+			result.addObject("ratioOfSurveysWhichHaveNotStartedYet", ratioOfSurveysWhichHaveNotStartedYet);
+			result.addObject("averageOfQuestionsPerSurvey", averageOfQuestionsPerSurvey);
+		
+			return result;
+		}
 
 
 }

@@ -234,7 +234,7 @@ public class SurveyService {
 	}
 	
 	public Collection<Survey> findSurveysAlreadyStarted(){
-		Collection<Survey> s = surveyRepository.findSurveysFromSevilla();
+		Collection<Survey> s = surveyRepository.findSurveysAlreadyStarted();
 		Assert.notNull(s);
 		return s;
 	}

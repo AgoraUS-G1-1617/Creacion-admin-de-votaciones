@@ -76,7 +76,7 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
 	 *         comenzadas.
 	 */
 	
-	@Query("select count(*) from Survey s where s.startDate<NOW()")
+	@Query("select s from Survey s where s.startDate<NOW()")
 	public Collection<Survey> findSurveysAlreadyStarted();
 	
 	/**
