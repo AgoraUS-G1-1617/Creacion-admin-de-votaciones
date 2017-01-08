@@ -1,7 +1,6 @@
 package repositories;
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -37,7 +36,7 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
 	@Query("select s from Survey s where s.startDate<NOW() and s.endDate>NOW()")
 	public List<Survey> findAllActiveSurveys();
 
-	// Cosulta a la base de datos que nos devuelve una lista de Survey
+	// Consulta a la base de datos que nos devuelve una lista de Survey
 	// que han sido creadas por un username que se pasa por parÃ¡metro.
 	/**
 	 * 
@@ -49,7 +48,7 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
 	@Query("select s from Survey s where s.usernameCreator = ?1")
 	public Collection<Survey> allCreatedSurveys(String username);
 
-	// Cosulta a la base de datos que nos devuelve una lista de Survey
+	// Consulta a la base de datos que nos devuelve una lista de Survey
 	// que han sido creadas por un username que se pasa por parÃ¡metro.
 	/**
 	 * 
@@ -61,4 +60,38 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
 	
 	@Query("select s from Survey s where s.postalCode = ?1")
 	public Collection<Survey> findSurveysByPlace(String postalCode);
+	
+
+	/**
+	 * 
+	 * @return Este método devuelve una lista con las Survey (votaciones) realizadas
+	 *         en Sevilla (c�digo postal que comienza por 41).
+	 */
+	@Query("select s from Survey s where s.postalCode like '41%'")
+	public Collection<Survey> findSurveysFromSevilla();
+	
+	/**
+	 * 
+	 * @return Este método devuelve una lista con las Survey (votaciones) ya
+	 *         comenzadas.
+	 */
+	
+	@Query("select count(*) from Survey s where s.startDate<NOW()")
+	public Collection<Survey> findSurveysAlreadyStarted();
+	
+	/**
+	 * 
+	 * @return Este método devuelve el ratio de Survey (votaciones) a�n no comenzadas.
+	 */
+	
+	@Query("select distinct (select count(*) from Survey s where s.startDate>NOW())/(select count(*) from Survey s2)*1.0 from Survey s3")
+	public Double ratioOfSurveysWhichHaveNotStartedYet();
+	
+	/**
+	 * 
+	 * @return Este método devuelve la media de preguntas por cada Survey (votaciones).
+	 */
+	
+	@Query("select avg(s.questions.size) from Survey s")
+	public Double averageOfQuestionsPerSurvey();
 }
