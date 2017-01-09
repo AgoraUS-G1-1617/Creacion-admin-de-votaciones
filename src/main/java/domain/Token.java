@@ -13,6 +13,7 @@ public class Token {
 	// Attributes -------------------------------------------------------------
 	
 	boolean valid;
+	String role;
 
 	@NotNull
 	public boolean isValid() {
@@ -21,6 +22,14 @@ public class Token {
 
 	public void setValid(boolean valid) {
 		this.valid = valid;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	// Relationships ----------------------------------------------------------

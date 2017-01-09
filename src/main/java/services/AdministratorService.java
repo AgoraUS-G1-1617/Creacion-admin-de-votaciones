@@ -55,7 +55,7 @@ public class AdministratorService {
 								"https://beta.authb.agoraus1.egc.duckdns.org/api/index.php?method=getRoleUser&user="
 										+ userAccount.getUsername()),
 						Token.class);
-		if (response.equals("ADMIN") || response.equals("CREADOR DE VOTACIONES")) {
+		if (response.equals("CREADOR_VOTACIONES")) {
 			res = true;
 		}
 		return res;
