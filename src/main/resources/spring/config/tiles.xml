@@ -19,6 +19,7 @@
 		<value>/views/survey/tiles.xml</value>
 		<value>/views/question/tiles.xml</value>
 		<value>/views/security/tiles.xml</value>
+		<value>/views/admin/tiles.xml</value>
 	</util:list>
 
 </beans>
