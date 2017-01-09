@@ -64,9 +64,10 @@ public class AdminController {
 	public ModelAndView save(@Valid UserAccount c, BindingResult binding) {
 		ModelAndView result=null;
 
-		if (binding.hasErrors()) {
-			result = createEditModelAndView(c);
-		} else {
+//		if (binding.hasErrors()) {
+//			result = createEditModelAndView(c);
+//			binding.getAllErrors();
+//		} else {
 			if(true){
 				
 			
@@ -79,11 +80,12 @@ public class AdminController {
 			String encodedPassword = password.encodePassword(c
 					.getPassword(), null);
 			c.setPassword(encodedPassword);
-			accountService.save(c);
+			accountService.saveAndFlush(c);
+			System.out.println("Guardado");
 			}else{
-				
+				System.out.println("Falso");
 			}
-			}
+//			}
 
 		return result;
 	}

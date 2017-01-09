@@ -15,17 +15,17 @@
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="authorities" />
-	<form:label path="userAccount.username">
-		<spring:message code="user.username" />:
+	<form:label path="username">
+		<spring:message code="admin.username" />:
 	</form:label>
-	<form:input path="userAccount.username" />
-	<form:errors cssClass="error" path="userAccount.username" />
+	<form:input path="username" />
+	<form:errors cssClass="error" path="username" />
 	<br />
-	<form:label path="userAccount.password">
-		<spring:message code="cook.password" />:
+	<form:label path="password">
+		<spring:message code="admin.password" />:
 	</form:label>
-	<form:password path="userAccount.password" />
-	<form:errors cssClass="error" path="userAccount.password" />
+	<form:password path="password" />
+	<form:errors cssClass="error" path="password" />
 	<br />
 	
 	<input type="submit" name="save"

@@ -52,6 +52,8 @@
 		<security:intercept-url pattern="/question/listQuestions.do" access="permitAll" /> 
 		<security:intercept-url pattern="/question/delete.do" access="permitAll" /> 
 		
+		<security:intercept-url pattern="/admin/login.do" access="permitAll" /> 
+		
 		<security:intercept-url pattern="/**" access="permitAll" />
 
 	</security:http>
