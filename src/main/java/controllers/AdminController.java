@@ -4,8 +4,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import security.Authority;
+import security.LoginService;
 import security.UserAccount;
 import security.UserAccountRepository;
 import services.AdministratorService;
@@ -27,7 +36,13 @@ public class AdminController {
 	private UserAccountRepository accountService;
 
 	@Autowired
+	private LoginService loginService;
+
+	@Autowired
 	private AdministratorService administratorService;
+	@Autowired
+	private UserDetailsService userDetailsService;
+
 	/**
 	 * @return Constructor del Controlador.
 	 */
@@ -60,7 +75,8 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(UserAccount c, BindingResult binding) throws IOException {
+	public ModelAndView save(UserAccount c, BindingResult binding,
+			HttpServletRequest request) throws IOException {
 		ModelAndView result = null;
 		if (administratorService.comprobarToken(c)) {
 
@@ -89,8 +105,26 @@ public class AdminController {
 				accountService.save(c);
 			}
 			System.out.println("Guardado");
+			// INICIAMOS SESION
+			DaoAuthenticationProvider authenticator;
+			Authentication authentication;
 
-			result = new ModelAndView("redirect:/welcome/index.do");
+			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
+					c.getUsername(), password.encodePassword(c.getPassword(),
+							null));
+
+			token.setDetails(new WebAuthenticationDetails(request));
+
+			authenticator = new DaoAuthenticationProvider();
+
+			authenticator.setUserDetailsService(userDetailsService);
+
+			authentication = authenticator.authenticate(token);
+
+			SecurityContextHolder.getContext()
+					.setAuthentication(authentication);
+			
+			result = new ModelAndView("redirect:/");
 		} else {
 			System.out.println("No Guardado");
 			return new ModelAndView("redirect:/admin/login.do");
