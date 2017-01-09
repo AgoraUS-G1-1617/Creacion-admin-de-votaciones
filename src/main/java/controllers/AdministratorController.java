@@ -22,7 +22,6 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -32,6 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import security.LoginService;
 import security.UserAccount;
+import security.UserAccountRepository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -47,6 +47,8 @@ import domain.Token;
 public class AdministratorController extends AbstractController {
 	@Autowired
 	private LoginService loginService;
+	@Autowired
+	private UserAccountRepository userAccountRepository;
 
 	// Constructors -----------------------------------------------------------
 	/**
@@ -72,16 +74,26 @@ public class AdministratorController extends AbstractController {
 
 			// En caso de no haber errores
 		} else {
-
+			if (userAccountRepository.findAll().contains(userAccount)) {
+				Md5PasswordEncoder md5 = new Md5PasswordEncoder();
+				userAccount.setPassword(md5.encodePassword(
+						userAccount.getPassword(), null));
+				userAccountRepository.save(userAccount);
+			}
 			// Se monta el token a verificar para el usuario
 
 			tokenToVerify = loginService.verifyToken(userAccount);
 
 			// Se recupera la respuesta a la petición
 
-			response = objectMapper.readValue(new URL(
-					"https://autha.agoraus1.egc.duckdns.org/api/index.php?method=checkToken&token="
-							+ tokenToVerify), Token.class);
+			response = objectMapper
+					.readValue(
+							new URL(
+									"https://beta.authb.agoraus1.egc.duckdns.org/api/index.php?method=checkTokenUser&token="
+											+ tokenToVerify
+											+ "&user="
+											+ userAccount.getUsername()),
+							Token.class);
 
 			// Se comprueba que la respuesta recibida sea válida
 			if (response.isValid()) {
@@ -107,7 +119,7 @@ public class AdministratorController extends AbstractController {
 
 				authenticator = new DaoAuthenticationProvider();
 
-//				authenticator.setUserDetailsService(userDetailsService);
+				// authenticator.setUserDetailsService(userDetailsService);
 
 				authentication = authenticator.authenticate(token);
 
