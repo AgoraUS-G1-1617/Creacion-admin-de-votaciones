@@ -52,7 +52,7 @@ public class AdministratorService {
 		response = objectMapper
 				.readValue(
 						new URL(
-								"https://beta.authb.agoraus1.egc.duckdns.org/api/index.php?method=getUserAPI&username="
+								"https://beta.authb.agoraus1.egc.duckdns.org/api/index.php?method=getUserAPI&user="
 										+ userAccount.getUsername()),
 						Token.class);
 		if (response.equals("ADMIN")) {
