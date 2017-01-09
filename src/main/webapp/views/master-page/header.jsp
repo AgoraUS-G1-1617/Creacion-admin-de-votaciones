@@ -44,31 +44,39 @@
 
 
 		<li class="arrow"></li>
-		<li><a class="fNiv" href="survey/list.do"><spring:message
-					code="master.page.list" /></a></li>
+		<security:authorize access="isAuthenticated()">
+
+			<li><a class="fNiv" href="survey/list.do"><spring:message
+						code="master.page.list" /></a></li>
 
 
 
-		<li><a href="survey/create.do"><spring:message
-					code="master.page.create">
-				</spring:message></a></li>
+			<li><a href="survey/create.do"><spring:message
+						code="master.page.create">
+					</spring:message></a></li>
 
 
 
-		<li><a href="survey/dashboard.do"><spring:message
-					code="master.page.dashboard">
-				</spring:message></a></li>
-		<li><a href=""><spring:message code="master.page.censo">
-				</spring:message></a></li>
-
+			<li><a href="survey/dashboard.do"><spring:message
+						code="master.page.dashboard">
+					</spring:message></a></li>
+			<li><a href=""><spring:message code="master.page.censo">
+					</spring:message></a></li>
+		</security:authorize>
 		<security:authorize access="isAnonymous()">
 			<li><a href="admin/login.do"><spring:message
 						code="master.page.login">
 					</spring:message></a></li>
 		</security:authorize>
 		<security:authorize access="isAuthenticated()">
-			<li><a class="fNiv" href="security/login.do"><spring:message
-						code="master.page.login" /></a></li>
+			<li><a class="fNiv"> <spring:message
+						code="master.page.profile" /> (<security:authentication
+						property="principal.username" />)
+			</a>
+				<ul>
+					<li><a href="j_spring_security_logout"><spring:message
+								code="master.page.logout" /> </a></li>
+				</ul></li>
 		</security:authorize>
 	</ul>
 </div>
