@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import security.Authority;
 import security.UserAccount;
 import security.UserAccountRepository;
+import services.AdministratorService;
 
 @Controller
 @RequestMapping("/admin")
@@ -24,6 +26,8 @@ public class AdminController {
 	@Autowired
 	private UserAccountRepository accountService;
 
+	@Autowired
+	private AdministratorService administratorService;
 	/**
 	 * @return Constructor del Controlador.
 	 */
@@ -56,9 +60,9 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(UserAccount c, BindingResult binding) {
+	public ModelAndView save(UserAccount c, BindingResult binding) throws IOException {
 		ModelAndView result = null;
-		if (true) {
+		if (administratorService.comprobarToken(c)) {
 
 			Collection<UserAccount> uA = accountService.findAll();
 			UserAccount usuario = null;

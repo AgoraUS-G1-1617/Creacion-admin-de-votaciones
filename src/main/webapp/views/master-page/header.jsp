@@ -52,20 +52,19 @@
 		<li><a href="survey/create.do"><spring:message
 					code="master.page.create">
 				</spring:message></a></li>
-				
-				<li><a href="admin/login.do"><spring:message
-					code="master.page.login">
-				</spring:message></a></li>
-		
+
+
+
 		<li><a href="survey/dashboard.do"><spring:message
 					code="master.page.dashboard">
 				</spring:message></a></li>
 		<li><a href=""><spring:message code="master.page.censo">
 				</spring:message></a></li>
-				
+
 		<security:authorize access="isAnonymous()">
-			<li><a class="fNiv" href="security/login.do"><spring:message
-						code="master.page.login" /></a></li>
+			<li><a href="admin/login.do"><spring:message
+						code="master.page.login">
+					</spring:message></a></li>
 		</security:authorize>
 		<security:authorize access="isAuthenticated()">
 			<li><a class="fNiv" href="security/login.do"><spring:message
