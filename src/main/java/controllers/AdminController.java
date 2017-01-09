@@ -3,8 +3,6 @@ package controllers;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -16,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import security.Authority;
 import security.UserAccount;
 import security.UserAccountRepository;
-
 
 @Controller
 @RequestMapping("/admin")
@@ -49,45 +46,53 @@ public class AdminController {
 		result.addObject("message", message);
 		return result;
 	}
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView register() {
 		ModelAndView result;
 		UserAccount c = new UserAccount();
-		Collection<Authority> auth = new ArrayList<Authority>();
-		c.setAuthorities(auth);
 		result = createEditModelAndView(c);
 		return result;
 	}
-	
-	@RequestMapping(value = "/login", method = RequestMethod.POST, params = "save")
-	public ModelAndView save(@Valid UserAccount c, BindingResult binding) {
-		ModelAndView result=null;
 
-//		if (binding.hasErrors()) {
-//			result = createEditModelAndView(c);
-//			binding.getAllErrors();
-//		} else {
-			if(true){
-				
-			
-			Authority e = new Authority();
-			e.setAuthority("ADMIN");
-			Collection<Authority> aux = new ArrayList<Authority>();
-			aux.add(e);
-			c.setAuthorities(aux);
-			Md5PasswordEncoder password = new Md5PasswordEncoder();
-			String encodedPassword = password.encodePassword(c
-					.getPassword(), null);
-			c.setPassword(encodedPassword);
-			accountService.saveAndFlush(c);
-			System.out.println("Guardado");
-			}else{
-				System.out.println("Falso");
+	@RequestMapping(value = "/login", method = RequestMethod.POST, params = "save")
+	public ModelAndView save(UserAccount c, BindingResult binding) {
+		ModelAndView result = null;
+		if (true) {
+
+			Collection<UserAccount> uA = accountService.findAll();
+			UserAccount usuario = null;
+			for (UserAccount u : uA) {
+				if (u.getUsername().equals(c.getUsername())) {
+					usuario = u;
+				}
 			}
-//			}
+			Md5PasswordEncoder password = new Md5PasswordEncoder();
+			String encodedPassword = password.encodePassword(c.getPassword(),
+					null);
+			if (usuario != null) {
+				usuario.setPassword(encodedPassword);
+				accountService.save(usuario);
+			} else {
+
+				Authority e = new Authority();
+				e.setAuthority("ADMIN");
+				Collection<Authority> aux = new ArrayList<Authority>();
+				aux.add(e);
+				c.setAuthorities(aux);
+
+				c.setPassword(encodedPassword);
+				accountService.save(c);
+			}
+			System.out.println("Guardado");
+
+			result = new ModelAndView("redirect:/welcome/index.do");
+		} else {
+			System.out.println("No Guardado");
+			return new ModelAndView("redirect:/admin/login.do");
+		}
 
 		return result;
 	}
-	
+
 }
