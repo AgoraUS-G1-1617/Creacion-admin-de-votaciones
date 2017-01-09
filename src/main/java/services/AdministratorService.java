@@ -18,7 +18,9 @@ public class AdministratorService {
 	@Autowired
 	private LoginService loginService;
 
-	// Repositories
+	// Método que dado un useraccount hace una llamada a la API de autenticación
+	// y comprueba que el token generado es el mismo de ellos,
+	// lo que indica que el usuario está registrado en la aplicación
 	public boolean comprobarToken(UserAccount userAccount) throws IOException {
 		ObjectMapper objectMapper = new ObjectMapper();
 		Token response;
@@ -35,6 +37,25 @@ public class AdministratorService {
 										+ userAccount.getUsername()),
 						Token.class);
 		if (response.isValid()) {
+			res = true;
+		}
+		return res;
+	}
+
+	// Método que dado un useraccount hace una llamada a la API de autenticación
+	// y me devuelve si es admin o no
+	public boolean getRol(UserAccount userAccount) throws IOException {
+		ObjectMapper objectMapper = new ObjectMapper();
+		Token response;
+		// Se recupera la respuesta a la petición
+		boolean res = false;
+		response = objectMapper
+				.readValue(
+						new URL(
+								"https://beta.authb.agoraus1.egc.duckdns.org/api/index.php?method=getUserAPI&username="
+										+ userAccount.getUsername()),
+						Token.class);
+		if (response.equals("ADMIN")) {
 			res = true;
 		}
 		return res;
