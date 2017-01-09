@@ -11,6 +11,7 @@ import security.UserAccount;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import domain.Rol;
 import domain.Token;
 
 @Service
@@ -46,16 +47,16 @@ public class AdministratorService {
 	// y me devuelve si es admin o no
 	public boolean getRol(UserAccount userAccount) throws IOException {
 		ObjectMapper objectMapper = new ObjectMapper();
-		Token response;
+		Rol response;
 		// Se recupera la respuesta a la petición
 		boolean res = false;
 		response = objectMapper
 				.readValue(
 						new URL(
 								"https://beta.authb.agoraus1.egc.duckdns.org/api/index.php?method=getRoleUser&user="
-										+ userAccount.getUsername()),
-						Token.class);
-		if (response.equals("CREADOR_VOTACIONES")) {
+										+ userAccount.getUsername()), Rol.class);
+		System.out.println(response.getRole());
+		if (response.getRole().equals("CREADOR_VOTACIONES")) {
 			res = true;
 		}
 		return res;

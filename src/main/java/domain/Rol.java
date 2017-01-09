@@ -2,28 +2,27 @@ package domain;
 
 import javax.validation.constraints.NotNull;
 
-public class Token {
+public class Rol {
 
 	// Constructors ------------------------------------------------------------
 	
-	public Token() {
+	public Rol() {
 		super();
 	}
 
 	// Attributes -------------------------------------------------------------
 	
-	boolean valid;
+	String role;
 
 	@NotNull
-	public boolean isValid() {
-		return valid;
+	public String getRole() {
+		return role;
 	}
 
-	public void setValid(boolean valid) {
-		this.valid = valid;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
-	
 	// Relationships ----------------------------------------------------------
 
 }
