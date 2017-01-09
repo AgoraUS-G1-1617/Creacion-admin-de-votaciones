@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import security.Authority;
-import security.LoginService;
 import security.UserAccount;
 import security.UserAccountRepository;
 import services.AdministratorService;
@@ -36,10 +35,8 @@ public class AdminController {
 	private UserAccountRepository accountService;
 
 	@Autowired
-	private LoginService loginService;
-
-	@Autowired
 	private AdministratorService administratorService;
+	
 	@Autowired
 	private UserDetailsService userDetailsService;
 
@@ -78,6 +75,7 @@ public class AdminController {
 	public ModelAndView save(UserAccount c, BindingResult binding,
 			HttpServletRequest request) throws IOException {
 		ModelAndView result = null;
+		//INTEGRACIÓN CON AUTENTICACIÓN
 		if (administratorService.comprobarToken(c)) {
 
 			Collection<UserAccount> uA = accountService.findAll();
@@ -123,11 +121,11 @@ public class AdminController {
 
 			SecurityContextHolder.getContext()
 					.setAuthentication(authentication);
-			
+
 			result = new ModelAndView("redirect:/");
 		} else {
-			System.out.println("No Guardado");
-			return new ModelAndView("redirect:/admin/login.do");
+			result = register();
+			result.addObject("message", "commit.error");
 		}
 
 		return result;

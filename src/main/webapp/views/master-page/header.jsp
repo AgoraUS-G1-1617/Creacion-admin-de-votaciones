@@ -60,9 +60,11 @@
 			<li><a href="survey/dashboard.do"><spring:message
 						code="master.page.dashboard">
 					</spring:message></a></li>
-			<li><a href=""><spring:message code="master.page.censo">
-					</spring:message></a></li>
+
 		</security:authorize>
+		<li><a href="https://beta.authb.agoraus1.egc.duckdns.org/"><spring:message
+					code="master.page.censo">
+				</spring:message></a></li>
 		<security:authorize access="isAnonymous()">
 			<li><a href="admin/login.do"><spring:message
 						code="master.page.login">
