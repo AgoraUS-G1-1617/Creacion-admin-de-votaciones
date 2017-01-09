@@ -18,6 +18,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Version;
 
+import security.UserAccount;
+
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -28,7 +30,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
 	@Type(value=Survey.class, name="survey"),
-	@Type(value=Question.class, name="question")
+	@Type(value=Question.class, name="question"),
+	@Type(value=UserAccount.class, name="userAccount")
 })
 public abstract class DomainEntity {
 

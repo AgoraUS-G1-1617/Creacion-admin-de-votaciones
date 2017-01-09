@@ -412,8 +412,8 @@ public class SurveyController {
 		ModelAndView result;
 		Assert.notNull(survey);
 		Date now = new Date(System.currentTimeMillis() - 1000);
-		System.out.println(survey.getStartDate());
-		System.out.println(survey.getEndDate());
+		//System.out.println(survey.getStartDate());
+		//System.out.println(survey.getEndDate());
 
 		if (bindingResult.hasErrors()) {
 			System.out.println(bindingResult.toString());
@@ -438,20 +438,20 @@ public class SurveyController {
 						|| survey.getTipo() == null) {
 					result.addObject("message", "survey.fields.empty");
 				}
-				if (survey.getStartDate() == null || survey.getEndDate() == null || survey.getTitle() == ""
+				else if (survey.getStartDate() == null || survey.getEndDate() == null || survey.getTitle() == ""
 						|| survey.getTipo() == null) {
 					result.addObject("message", "survey.fields.empty");
 				}
-				if (now.after(survey.getStartDate()) || now.after(survey.getEndDate())) {
+				else if (now.after(survey.getStartDate()) || now.after(survey.getEndDate())) {
 					result.addObject("message", "survey.dates.future");
 				}
-				if (survey.getStartDate().after(survey.getEndDate())) {
+				else if (survey.getStartDate().after(survey.getEndDate())) {
 					result.addObject("message", "survey.start.end");
 				}
-				if (!survey.getPostalCode().matches("^\\d\\d\\d\\d\\d$")) {
+				else if (!survey.getPostalCode().matches("^\\d\\d\\d\\d\\d$")) {
 					result.addObject("message", "survey.postalCode.matches");
 				}
-				if (survey.getTitle().length()<5 || survey.getTitle().length()>100) {
+				else if (survey.getTitle().length()<5 || survey.getTitle().length()>100) {
 					result.addObject("message", "survey.title.length");
 				}
 			}
