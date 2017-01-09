@@ -45,8 +45,7 @@ public class LoginController extends AbstractController {
 			@Valid @ModelAttribute Credentials credentials,
 			BindingResult bindingResult,
 			@RequestParam(required = false) boolean showError) {
-		Assert.notNull(credentials);
-		Assert.notNull(bindingResult);
+
 		
 		ModelAndView result;
 
