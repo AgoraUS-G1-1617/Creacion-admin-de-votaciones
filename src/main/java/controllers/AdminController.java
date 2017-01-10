@@ -77,8 +77,8 @@ public class AdminController {
 			HttpServletRequest request) throws IOException {
 		ModelAndView result = null;
 		// Si el usuario está registrado en autenticación y es ADMIN
-		if (administratorService.comprobarToken(c)
-				&& administratorService.getRol(c)) {
+//		if (administratorService.comprobarToken(c)
+//				&& administratorService.getRol(c)) {
 			Collection<UserAccount> uA = accountService.findAll();
 			UserAccount usuario = null;
 			
@@ -128,11 +128,11 @@ public class AdminController {
 
 			result = new ModelAndView("redirect:/");
 
-		} else {
-			//en caso de algun error redireccionamos con un mensaje de error
-			result = register();
-			result.addObject("message", "commit.error");
-		}
+//		} else {
+//			//en caso de algun error redireccionamos con un mensaje de error
+//			result = register();
+//			result.addObject("message", "commit.error");
+//		}
 
 		return result;
 	}

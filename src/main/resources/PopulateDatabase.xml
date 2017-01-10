@@ -18,7 +18,7 @@
 		<property name="endDate" value="2016/06/02 12:00" />
 		<property name="tipo" value="Cerrado" />
 		<property name="census" value="1" />
-		<property name="usernameCreator" value="Verde1" />
+		<property name="usernameCreator" value="admin" />
 		<property name="questions">
 			<list>
 				<ref bean="question1" />
@@ -38,7 +38,7 @@
 		<property name="endDate" value="2018/02/02 12:00" />
 		<property name="tipo" value="Cerrado" />
 		<property name="census" value="1" />
-		<property name="usernameCreator" value="Verde1" />
+		<property name="usernameCreator" value="admin" />
 		<property name="questions">
 			<list>
 				<ref bean="question4" />
@@ -57,7 +57,7 @@
 		<property name="endDate" value="2017/04/11 12:00" />
 		<property name="tipo" value="Cerrado" />
 		<property name="census" value="1" />
-		<property name="usernameCreator" value="Verde1" />
+		<property name="usernameCreator" value="admin" />
 		<property name="questions">
 			<list>
 				<ref bean="question7" />

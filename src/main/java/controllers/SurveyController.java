@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import security.LoginService;
 import services.QuestionService;
 import services.SurveyService;
 import domain.CheckToken;
@@ -399,7 +400,7 @@ public class SurveyController {
 		ModelAndView result;
 		Collection<Survey> surveys;
 		Date hoy= new Date(System.currentTimeMillis() - 1000);
-		surveys= surveyService.allSurveys();
+		surveys= surveyService.findOneByUsername(LoginService.getPrincipal().getUsername());
 		result = new ModelAndView("survey/list");
 		result.addObject("surveys", surveys);
 		result.addObject("hoy",hoy);
@@ -426,7 +427,7 @@ public class SurveyController {
 			
 		} else {
 			try {
-				Integer s2 = surveyService.save(survey,user);
+				Integer s2 = surveyService.save(survey,LoginService.getPrincipal().getUsername());
 				result = new ModelAndView("redirect:/survey/addQuestion.do");
 				result.addObject("surveyId", s2);
 			} catch (Throwable oops) {
