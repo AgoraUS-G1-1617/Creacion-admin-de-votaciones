@@ -1,15 +1,25 @@
-language: java
+language:
+    - java
 
 services:
-  - mysql
+    - mysql
 
 jdk:
     - oraclejdk8
-    - oraclejdk7
+    - openjdk7
 
-sudo: false
+before_install:
+    - mysql -u root < script.sql
+
 script:
-  - mvn test -B
+    - mvn clean test
+    - ls -lah
+
+dist:
+    - trusty
+
+sudo:
+    - false
 
 notifications:
     - email: false  # Desactivamos las notificaciones por email para evitar spam
