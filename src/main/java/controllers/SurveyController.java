@@ -176,7 +176,7 @@ public class SurveyController {
 		ModelAndView result;
 		Question question = null;
 		try{
-		Survey survey = surveyService.findOne(surveyId);
+		Survey survey = surveyService.findSurvey(surveyId);
 		question = questionService.create(surveyId);
 		result = new ModelAndView("survey/addQuestion");
 		result.addObject("actionURL", "survey/addQuestion.do");
@@ -184,7 +184,8 @@ public class SurveyController {
 		result.addObject("questio", question);
 		}
 		catch(Throwable oops){
-			result = new ModelAndView("redirect:/question/listQuestions.do?surveyId="+surveyId);			
+			result = details(surveyId);
+			result.addObject("message", "commit.illegalOp");
 		}
 		return result;
 	}
@@ -328,11 +329,21 @@ public class SurveyController {
 	@RequestMapping(value = "/details", method = RequestMethod.GET)
 	public ModelAndView details(@RequestParam int surveyId) {
 		ModelAndView result;
-		Survey survey;
-		survey = surveyService.findOne(surveyId);
-		Assert.notNull(survey);
-		result = new ModelAndView("survey/details");
-		result.addObject("survey", survey);
+		Survey s;
+		try{
+			s = surveyService.findSurvey(surveyId);
+			result = new ModelAndView("survey/details");
+			result.addObject("survey", s);
+		}catch(Throwable oops){
+			Collection<Survey> surveys;
+			Date hoy= new Date(System.currentTimeMillis() - 1000);
+			surveys= surveyService.findOneByUsername(LoginService.getPrincipal().getUsername());
+			result = new ModelAndView("survey/list");
+			result.addObject("surveys", surveys);
+			result.addObject("hoy",hoy);
+			result.addObject("message", oops.getMessage());
+			result.addObject("requestURI", "survey/list.do");
+		}
 		return result;
 	}
 

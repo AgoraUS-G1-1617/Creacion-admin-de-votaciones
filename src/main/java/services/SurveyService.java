@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.SurveyRepository;
+import security.LoginService;
 
 import domain.Question;
 import domain.Survey;
@@ -88,6 +89,14 @@ public class SurveyService {
 		Assert.isTrue(id!=0);
 		Survey  s = surveyRepository.findOne(id);
 		Assert.notNull(s);
+		return s;
+	}
+	
+	public Survey findSurvey(int id) {
+		Assert.isTrue(id!=0, "commit.illegalOp");
+		Assert.isTrue(surveyRepository.exists(id), "commit.illegalOp");
+		Survey  s = surveyRepository.findOne(id);
+		Assert.isTrue(s.getUsernameCreator().equals(LoginService.getPrincipal().getUsername()), "commit.illegalOp");
 		return s;
 	}
 	// MÃ©todo de interacciÃ³n con el subsistema de VisualizaciÃ³n
