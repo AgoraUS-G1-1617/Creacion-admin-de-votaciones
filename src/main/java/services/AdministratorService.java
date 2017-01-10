@@ -32,7 +32,7 @@ public class AdministratorService {
 		response = objectMapper
 				.readValue(
 						new URL(
-								"https://beta.authb.agoraus1.egc.duckdns.org/api/index.php?method=checkTokenUser&token="
+								"https://authb.agoraus1.egc.duckdns.org/api/index.php?method=checkTokenUser&token="
 										+ tokenToVerify
 										+ "&user="
 										+ userAccount.getUsername()),
@@ -53,7 +53,7 @@ public class AdministratorService {
 		response = objectMapper
 				.readValue(
 						new URL(
-								"https://beta.authb.agoraus1.egc.duckdns.org/api/index.php?method=getRoleUser&user="
+								"https://authb.agoraus1.egc.duckdns.org/api/index.php?method=getRoleUser&user="
 										+ userAccount.getUsername()), Rol.class);
 		System.out.println(response.getRole());
 		if (response.getRole().equals("CREADOR_VOTACIONES")) {
