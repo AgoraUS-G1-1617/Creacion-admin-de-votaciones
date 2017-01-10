@@ -185,7 +185,7 @@ public class SurveyController {
 		}
 		catch(Throwable oops){
 			result = details(surveyId);
-			result.addObject("message", "commit.illegalOp");
+			result.addObject("message", oops.getMessage());
 		}
 		return result;
 	}
@@ -357,10 +357,11 @@ public class SurveyController {
 		ModelAndView result;
 		try {
 			surveyService.delete(surveyId);
-			result = new ModelAndView("redirect:/survey/list.do");
+			result = list();
+			result.addObject("action", "commit.ok");
 		} catch (Throwable oops) {
-			result = new ModelAndView("survey/list");
-			result.addObject("message", "survey.error.dates");
+			result = list();
+			result.addObject("message", oops.getMessage());
 		}
 
 		return result;

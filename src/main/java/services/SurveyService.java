@@ -155,7 +155,7 @@ public class SurveyService {
 	public void delete(int id) {
 		Assert.notNull(id);
 		Date now = new Date(System.currentTimeMillis() - 1000);
-		Survey survey = surveyRepository.findOne(id);
+		Survey survey = findSurvey(id);
 		if (survey.getStartDate().before(now) || survey.getEndDate().after(now)) {
 			surveyRepository.delete(id);
 		} else {
