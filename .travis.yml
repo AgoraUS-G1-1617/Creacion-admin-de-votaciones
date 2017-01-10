@@ -9,9 +9,6 @@ jdk:
     - openjdk7
     - openjdk8
 
-before_install:
-  - cd java
-
 script:
   - ant test
 
