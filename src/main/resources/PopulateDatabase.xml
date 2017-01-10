@@ -84,6 +84,44 @@
 		</property>
 		<property name="postalCode" value="41012" />
 	</bean>
+	
+			<bean id="survey5" class="domain.Survey">
+		<property name="title" value="tortilla" />
+		<property name="description" value="¿Cree que la tortilla debe contener cebolla?" />
+		<property name="startDate" value="2017/02/02 12:00" />
+		<property name="endDate" value="2017/03/03 12:00" />
+		<property name="tipo" value="Cerrado" />
+		<property name="census" value="1" />
+		<property name="usernameCreator" value="raftrugon" />
+		<property name="questions">
+			<list>
+				<ref bean="question9" />
+				<ref bean="question10" />
+			</list>
+
+		</property>
+		<property name="postalCode" value="41012" />
+	</bean>
+	
+	<bean id="survey6" class="domain.Survey">
+		<property name="title" value="coches" />
+		<property name="description" value="Elegir posible posicin de los pilotos de la siguiente temporada de la F1" />
+		<property name="startDate" value="2017/04/04 12:00" />
+		<property name="endDate" value="2017/04/04 12:00" />
+		<property name="tipo" value="Cerrado" />
+		<property name="census" value="1" />
+		<property name="usernameCreator" value="raftrugon" />
+		<property name="questions">
+			<list>
+				<ref bean="question11" />
+				<ref bean="question12" />
+			</list>
+
+		</property>
+		<property name="postalCode" value="41012" />
+	</bean>
+	
+	
 	<!-- Questions -->
 	
 	<bean id="question1" class="domain.Question">
@@ -125,6 +163,26 @@
 	
 	<bean id="question8" class="domain.Question">
 		<property name="text" value="Sí" />
+		<property name="surveyId" value="9" />
+	</bean>
+	
+	<bean id="question9" class="domain.Question">
+		<property name="text" value="Debe llevar" />
+		<property name="surveyId" value="9" />
+	</bean>
+	
+	<bean id="question10" class="domain.Question">
+		<property name="text" value="no debe llevar" />
+		<property name="surveyId" value="9" />
+	</bean>
+	
+		<bean id="question11" class="domain.Question">
+		<property name="text" value="Fernando alonso" />
+		<property name="surveyId" value="9" />
+	</bean>
+	
+	<bean id="question12" class="domain.Question">
+		<property name="text" value="vettel" />
 		<property name="surveyId" value="9" />
 	</bean>
 
