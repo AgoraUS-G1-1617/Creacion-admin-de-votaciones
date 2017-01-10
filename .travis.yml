@@ -6,9 +6,10 @@ services:
 jdk:
     - oraclejdk8
     - oraclejdk7
-    - openjdk7
-    - openjdk8
 
+install: ant deps
+
+sudo: false
 script:
   - ant test
 

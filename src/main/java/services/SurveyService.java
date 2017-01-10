@@ -258,12 +258,18 @@ public class SurveyService {
 	
 	public Double ratioOfSurveysWhichHaveNotStartedYet(){
 		Double r = surveyRepository.ratioOfSurveysWhichHaveNotStartedYet(LoginService.getPrincipal().getUsername());
+		if(r==null){
+			r=0.0;
+		}
 		Assert.notNull(r);
 		return r;
 	}
 	
 	public Double averageOfQuestionsPerSurvey(){
 		Double a = surveyRepository.averageOfQuestionsPerSurvey(LoginService.getPrincipal().getUsername());
+		if(a==null){
+			a=0.0;
+		}
 		Assert.notNull(a);
 		return a;
 	}
