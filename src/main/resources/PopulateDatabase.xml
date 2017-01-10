@@ -168,22 +168,22 @@
 	
 	<bean id="question9" class="domain.Question">
 		<property name="text" value="Debe llevar" />
-		<property name="surveyId" value="9" />
+		<property name="surveyId" value="5" />
 	</bean>
 	
 	<bean id="question10" class="domain.Question">
 		<property name="text" value="no debe llevar" />
-		<property name="surveyId" value="9" />
+		<property name="surveyId" value="5" />
 	</bean>
 	
 		<bean id="question11" class="domain.Question">
 		<property name="text" value="Fernando alonso" />
-		<property name="surveyId" value="9" />
+		<property name="surveyId" value="6" />
 	</bean>
 	
 	<bean id="question12" class="domain.Question">
 		<property name="text" value="vettel" />
-		<property name="surveyId" value="9" />
+		<property name="surveyId" value="6" />
 	</bean>
 
 </beans>
