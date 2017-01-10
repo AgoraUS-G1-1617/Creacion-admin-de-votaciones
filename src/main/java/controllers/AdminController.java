@@ -71,15 +71,16 @@ public class AdminController {
 		return result;
 	}
 
-	//Metodo para integrar con autenticación
-	@RequestMapping(value = "/login", method = RequestMethod.POST, params = "save")
+	// Metodo para integrar con autenticación
 	public ModelAndView save(UserAccount c, BindingResult binding,
 			HttpServletRequest request) throws IOException {
 		ModelAndView result = null;
 		// Si el usuario está registrado en autenticación y es ADMIN
+		if (administratorService.comprobarToken(c)
+				&& administratorService.getRol(c)) {
 			Collection<UserAccount> uA = accountService.findAll();
 			UserAccount usuario = null;
-			
+
 			for (UserAccount u : uA) {
 				if (u.getUsername().equals(c.getUsername())) {
 					usuario = u;
@@ -88,11 +89,13 @@ public class AdminController {
 			Md5PasswordEncoder password = new Md5PasswordEncoder();
 			String encodedPassword = password.encodePassword(c.getPassword(),
 					null);
-			//Si el usuario existe cambiamos su password a la nueva introducida, después de verificar la password con el token
+			// Si el usuario existe cambiamos su password a la nueva
+			// introducida, después de verificar la password con el token
 			if (usuario != null) {
 				usuario.setPassword(encodedPassword);
 				accountService.save(usuario);
-			//Si el usuario no existe lo registramos su useraccount para poder asignarle sus votaciones creadas
+				// Si el usuario no existe lo registramos su useraccount para
+				// poder asignarle sus votaciones creadas
 
 			} else {
 
@@ -126,7 +129,11 @@ public class AdminController {
 
 			result = new ModelAndView("redirect:/");
 
-
+		} else {
+			// en caso de algun error redireccionamos con un mensaje de error
+			result = register();
+			result.addObject("message", "commit.error");
+		}
 
 		return result;
 	}
