@@ -1,0 +1,15 @@
+language: java
+
+services:
+  - mysql
+
+jdk:
+    - oraclejdk8
+    - oraclejdk7
+    - openjdk7
+
+before_install:
+  - cd java
+
+script:
+  - ant test
