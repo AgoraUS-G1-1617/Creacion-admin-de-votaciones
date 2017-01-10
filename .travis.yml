@@ -11,7 +11,7 @@ install: ant deps
 
 sudo: false
 script:
-  - ant test
+  - mvn test -B
 
 notifications:
     - email: false  # Desactivamos las notificaciones por email para evitar spam
