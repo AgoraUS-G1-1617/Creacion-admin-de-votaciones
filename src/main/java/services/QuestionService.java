@@ -66,6 +66,8 @@ public class QuestionService extends DomainEntity{
 	 * @return Este metodo devuelve la question que ha sido identificada por su id.
 	 */
 	public Question findOne(int questionId) {
-		return questionRepository.findOne(questionId);
+		Question q = questionRepository.findOne(questionId);
+		Assert.notNull(q, "commit.illegalOp");
+		return q;
 	}
 }

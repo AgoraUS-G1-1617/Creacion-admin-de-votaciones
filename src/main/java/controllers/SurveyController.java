@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import security.LoginService;
 import services.QuestionService;
 import services.SurveyService;
 import domain.CheckToken;
@@ -175,7 +176,7 @@ public class SurveyController {
 		ModelAndView result;
 		Question question = null;
 		try{
-		Survey survey = surveyService.findOne(surveyId);
+		Survey survey = surveyService.findSurvey(surveyId);
 		question = questionService.create(surveyId);
 		result = new ModelAndView("survey/addQuestion");
 		result.addObject("actionURL", "survey/addQuestion.do");
@@ -183,7 +184,8 @@ public class SurveyController {
 		result.addObject("questio", question);
 		}
 		catch(Throwable oops){
-			result = new ModelAndView("redirect:/question/listQuestions.do?surveyId="+surveyId);			
+			result = details(surveyId);
+			result.addObject("message", oops.getMessage());
 		}
 		return result;
 	}
@@ -327,11 +329,21 @@ public class SurveyController {
 	@RequestMapping(value = "/details", method = RequestMethod.GET)
 	public ModelAndView details(@RequestParam int surveyId) {
 		ModelAndView result;
-		Survey survey;
-		survey = surveyService.findOne(surveyId);
-		Assert.notNull(survey);
-		result = new ModelAndView("survey/details");
-		result.addObject("survey", survey);
+		Survey s;
+		try{
+			s = surveyService.findSurvey(surveyId);
+			result = new ModelAndView("survey/details");
+			result.addObject("survey", s);
+		}catch(Throwable oops){
+			Collection<Survey> surveys;
+			Date hoy= new Date(System.currentTimeMillis() - 1000);
+			surveys= surveyService.findOneByUsername(LoginService.getPrincipal().getUsername());
+			result = new ModelAndView("survey/list");
+			result.addObject("surveys", surveys);
+			result.addObject("hoy",hoy);
+			result.addObject("message", oops.getMessage());
+			result.addObject("requestURI", "survey/list.do");
+		}
 		return result;
 	}
 
@@ -345,10 +357,11 @@ public class SurveyController {
 		ModelAndView result;
 		try {
 			surveyService.delete(surveyId);
-			result = new ModelAndView("redirect:/survey/list.do");
+			result = list();
+			result.addObject("action", "commit.ok");
 		} catch (Throwable oops) {
-			result = new ModelAndView("survey/list");
-			result.addObject("message", "survey.error.dates");
+			result = list();
+			result.addObject("message", oops.getMessage());
 		}
 
 		return result;
@@ -399,7 +412,7 @@ public class SurveyController {
 		ModelAndView result;
 		Collection<Survey> surveys;
 		Date hoy= new Date(System.currentTimeMillis() - 1000);
-		surveys= surveyService.allSurveys();
+		surveys= surveyService.findOneByUsername(LoginService.getPrincipal().getUsername());
 		result = new ModelAndView("survey/list");
 		result.addObject("surveys", surveys);
 		result.addObject("hoy",hoy);
@@ -426,7 +439,7 @@ public class SurveyController {
 			
 		} else {
 			try {
-				Integer s2 = surveyService.save(survey,user);
+				Integer s2 = surveyService.save(survey,LoginService.getPrincipal().getUsername());
 				result = new ModelAndView("redirect:/survey/addQuestion.do");
 				result.addObject("surveyId", s2);
 			} catch (Throwable oops) {

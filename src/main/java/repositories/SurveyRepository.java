@@ -67,8 +67,8 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
 	 * @return Este m√©todo devuelve una lista con las Survey (votaciones) realizadas
 	 *         en Sevilla (cÛdigo postal que comienza por 41).
 	 */
-	@Query("select s from Survey s where s.postalCode like '41%'")
-	public Collection<Survey> findSurveysFromSevilla();
+	@Query("select s from Survey s where s.postalCode like '41%' and s.usernameCreator = ?1")
+	public Collection<Survey> findSurveysFromSevilla(String username);
 	
 	/**
 	 * 
@@ -76,22 +76,22 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
 	 *         comenzadas.
 	 */
 	
-	@Query("select s from Survey s where s.startDate<NOW()")
-	public Collection<Survey> findSurveysAlreadyStarted();
+	@Query("select s from Survey s where s.startDate<NOW() and s.usernameCreator = ?1")
+	public Collection<Survey> findSurveysAlreadyStarted(String username);
 	
 	/**
 	 * 
 	 * @return Este m√©todo devuelve el ratio de Survey (votaciones) a˙n no comenzadas.
 	 */
 	
-	@Query("select distinct (select count(*) from Survey s where s.startDate>NOW())/(select count(*) from Survey s2)*1.0 from Survey s3")
-	public Double ratioOfSurveysWhichHaveNotStartedYet();
+	@Query("select distinct (select count(*) from Survey s where s.startDate>NOW() and s.usernameCreator = ?1)/(select count(*) from Survey s2 where s2.usernameCreator = ?1)*1.0 from Survey s3")
+	public Double ratioOfSurveysWhichHaveNotStartedYet(String username);
 	
 	/**
 	 * 
 	 * @return Este m√©todo devuelve la media de preguntas por cada Survey (votaciones).
 	 */
 	
-	@Query("select avg(s.questions.size) from Survey s")
-	public Double averageOfQuestionsPerSurvey();
+	@Query("select avg(s.questions.size) from Survey s where s.usernameCreator = ?1")
+	public Double averageOfQuestionsPerSurvey(String username);
 }

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.SurveyRepository;
+import security.LoginService;
 
 import domain.Question;
 import domain.Survey;
@@ -90,6 +91,14 @@ public class SurveyService {
 		Assert.notNull(s);
 		return s;
 	}
+	
+	public Survey findSurvey(int id) {
+		Assert.isTrue(id!=0, "commit.illegalOp");
+		Assert.isTrue(surveyRepository.exists(id), "commit.illegalOp");
+		Survey  s = surveyRepository.findOne(id);
+		Assert.isTrue(s.getUsernameCreator().equals(LoginService.getPrincipal().getUsername()), "commit.illegalOp");
+		return s;
+	}
 	// MÃ©todo de interacciÃ³n con el subsistema de VisualizaciÃ³n
 	/**
 	 * 
@@ -146,7 +155,7 @@ public class SurveyService {
 	public void delete(int id) {
 		Assert.notNull(id);
 		Date now = new Date(System.currentTimeMillis() - 1000);
-		Survey survey = surveyRepository.findOne(id);
+		Survey survey = findSurvey(id);
 		if (survey.getStartDate().before(now) || survey.getEndDate().after(now)) {
 			surveyRepository.delete(id);
 		} else {
@@ -236,25 +245,25 @@ public class SurveyService {
 	}
 	
 	public Collection<Survey> findSurveysFromSevilla(){
-		Collection<Survey> s = surveyRepository.findSurveysFromSevilla();
+		Collection<Survey> s = surveyRepository.findSurveysFromSevilla(LoginService.getPrincipal().getUsername());
 		Assert.notNull(s);
 		return s;
 	}
 	
 	public Collection<Survey> findSurveysAlreadyStarted(){
-		Collection<Survey> s = surveyRepository.findSurveysAlreadyStarted();
+		Collection<Survey> s = surveyRepository.findSurveysAlreadyStarted(LoginService.getPrincipal().getUsername());
 		Assert.notNull(s);
 		return s;
 	}
 	
 	public Double ratioOfSurveysWhichHaveNotStartedYet(){
-		Double r = surveyRepository.ratioOfSurveysWhichHaveNotStartedYet();
+		Double r = surveyRepository.ratioOfSurveysWhichHaveNotStartedYet(LoginService.getPrincipal().getUsername());
 		Assert.notNull(r);
 		return r;
 	}
 	
 	public Double averageOfQuestionsPerSurvey(){
-		Double a = surveyRepository.averageOfQuestionsPerSurvey();
+		Double a = surveyRepository.averageOfQuestionsPerSurvey(LoginService.getPrincipal().getUsername());
 		Assert.notNull(a);
 		return a;
 	}
