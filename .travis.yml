@@ -6,11 +6,12 @@ services:
 jdk:
     - oraclejdk8
     - oraclejdk7
-    - openjdk7
-    - openjdk8
 
+install: ant deps
+
+sudo: false
 script:
-  - ant -version test
+  - ant test
 
 notifications:
     - email: false  # Desactivamos las notificaciones por email para evitar spam
