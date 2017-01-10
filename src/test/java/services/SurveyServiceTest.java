@@ -173,13 +173,14 @@ public class SurveyServiceTest extends AbstractTest{
 
 	@Test
 	public void testDelete(){
+		authenticate("raftrugon");
 		Survey res=new Survey();
 		
 		System.out.println("\n\n\n//////////////////////////////////////////////////////////////////////////////////");
 		System.out.println("////////////// Test de eliminar una encuesta de forma persistente //////////////////");
 		System.out.println("//////////////////////////////////////////////////////////////////////////////////\n");
 		System.out.println("Todos los surveys: ");
-		for(Survey s: surveyService.allSurveys()){
+		for(Survey s: surveyService.findOneByUsername("raftrugon")){
 			System.out.println(s);
 			res=s;
 		}
@@ -192,10 +193,13 @@ public class SurveyServiceTest extends AbstractTest{
 			System.out.println(s);
 		}
 		System.out.println("");
+		authenticate(null);
 	}
 	
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testDeleteNegativo(){
+		authenticate("raftrugon");
+
 		System.out.println("\n\n\n//////////////////////////////////////////////////////////////////////////////////");
 		System.out.println("////////////// Test negativo de eliminar una encuesta de forma persistente //////////////////");
 		System.out.println("//////////////////////////////////////////////////////////////////////////////////\n");
@@ -214,6 +218,7 @@ public class SurveyServiceTest extends AbstractTest{
 			System.out.println(s);
 		}
 		System.out.println("");
+		authenticate(null);
 	}
 		
 	

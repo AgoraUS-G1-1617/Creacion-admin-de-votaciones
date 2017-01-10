@@ -13,7 +13,8 @@
 	<!-- Surveys -->
 	<bean id="survey1" class="domain.Survey">
 		<property name="title" value="Encuesta futbolística en Sevilla" />
-		<property name="description" value="Indaga sobre las preferencias de los ciudadanos en los equipos de la ciudad" />
+		<property name="description"
+			value="Indaga sobre las preferencias de los ciudadanos en los equipos de la ciudad" />
 		<property name="startDate" value="2016/05/02 12:00" />
 		<property name="endDate" value="2016/06/02 12:00" />
 		<property name="tipo" value="Cerrado" />
@@ -30,10 +31,11 @@
 		</property>
 		<property name="postalCode" value="41005" />
 	</bean>
-	
+
 	<bean id="survey2" class="domain.Survey">
 		<property name="title" value="Número de coches" />
-		<property name="description" value="Encuestas para conocer el número de coches de los individuos de la población" />
+		<property name="description"
+			value="Encuestas para conocer el número de coches de los individuos de la población" />
 		<property name="startDate" value="2018/01/01 12:00" />
 		<property name="endDate" value="2018/02/02 12:00" />
 		<property name="tipo" value="Cerrado" />
@@ -52,7 +54,8 @@
 	</bean>
 	<bean id="survey3" class="domain.Survey">
 		<property name="title" value="Crisis" />
-		<property name="description" value="Pretendemos conocer si la gente cree que ya hemos superado la crisis" />
+		<property name="description"
+			value="Pretendemos conocer si la gente cree que ya hemos superado la crisis" />
 		<property name="startDate" value="2016/03/01 12:00" />
 		<property name="endDate" value="2017/04/11 12:00" />
 		<property name="tipo" value="Cerrado" />
@@ -68,10 +71,11 @@
 		</property>
 		<property name="postalCode" value="11393" />
 	</bean>
-	
-		<bean id="survey4" class="domain.Survey">
+
+	<bean id="survey4" class="domain.Survey">
 		<property name="title" value="Polución" />
-		<property name="description" value="¿Cree que las medidas implantadas en el Ayuntamiento de Madrid son correctas?" />
+		<property name="description"
+			value="¿Cree que las medidas implantadas en el Ayuntamiento de Madrid son correctas?" />
 		<property name="startDate" value="2016/12/12 12:00" />
 		<property name="endDate" value="2017/01/10 12:00" />
 		<property name="tipo" value="Cerrado" />
@@ -84,8 +88,8 @@
 		</property>
 		<property name="postalCode" value="41012" />
 	</bean>
-	
-			<bean id="survey5" class="domain.Survey">
+
+	<bean id="survey5" class="domain.Survey">
 		<property name="title" value="tortilla" />
 		<property name="description" value="¿Cree que la tortilla debe contener cebolla?" />
 		<property name="startDate" value="2017/02/02 12:00" />
@@ -102,10 +106,11 @@
 		</property>
 		<property name="postalCode" value="41012" />
 	</bean>
-	
+
 	<bean id="survey6" class="domain.Survey">
 		<property name="title" value="coches" />
-		<property name="description" value="Elegir posible posicin de los pilotos de la siguiente temporada de la F1" />
+		<property name="description"
+			value="Elegir posible posicin de los pilotos de la siguiente temporada de la F1" />
 		<property name="startDate" value="2017/04/04 12:00" />
 		<property name="endDate" value="2017/04/04 12:00" />
 		<property name="tipo" value="Cerrado" />
@@ -120,10 +125,10 @@
 		</property>
 		<property name="postalCode" value="41012" />
 	</bean>
-	
-	
+
+
 	<!-- Questions -->
-	
+
 	<bean id="question1" class="domain.Question">
 		<property name="text" value="¿Cuál es su equipo de fútbol favorito?" />
 		<property name="surveyId" value="1" />
@@ -134,12 +139,12 @@
 		<property name="text" value="¿Prefiere a Sevilla o Betis?" />
 		<property name="surveyId" value="1" />
 	</bean>
-	
+
 	<bean id="question3" class="domain.Question">
 		<property name="text" value="¿Tiene problemas mentales?" />
 		<property name="surveyId" value="1" />
 	</bean>
-	
+
 	<bean id="question4" class="domain.Question">
 		<property name="text" value="¿Tienes un coche?" />
 		<property name="surveyId" value="5" />
@@ -150,44 +155,55 @@
 		<property name="text" value="¿Tienes 2 coches?" />
 		<property name="surveyId" value="5" />
 	</bean>
-	
+
 	<bean id="question6" class="domain.Question">
 		<property name="text" value="¿Tienes 3 o mas coches?" />
 		<property name="surveyId" value="5" />
 	</bean>
-	
-		<bean id="question7" class="domain.Question">
+
+	<bean id="question7" class="domain.Question">
 		<property name="text" value="No" />
 		<property name="surveyId" value="9" />
 	</bean>
-	
+
 	<bean id="question8" class="domain.Question">
 		<property name="text" value="Sí" />
 		<property name="surveyId" value="9" />
 	</bean>
-	
+
 	<bean id="question9" class="domain.Question">
 		<property name="text" value="Debe llevar" />
 		<property name="surveyId" value="13" />
 
 	</bean>
-	
+
 	<bean id="question10" class="domain.Question">
 		<property name="text" value="no debe llevar" />
 		<property name="surveyId" value="13" />
 
 	</bean>
-	
-		<bean id="question11" class="domain.Question">
+
+	<bean id="question11" class="domain.Question">
 		<property name="text" value="Fernando alonso" />
 		<property name="surveyId" value="16" />
 
 	</bean>
-	
+
 	<bean id="question12" class="domain.Question">
 		<property name="text" value="vettel" />
 		<property name="surveyId" value="16" />
 
 	</bean>
+	<bean id="useraccount1" class="security.UserAccount">
+		<property name="username" value="raftrugon" />
+		<property name="password" value="7545bb51a421283c44a02eb657c6b03b" />
+		<property name="authorities">
+			<list>
 
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
 </beans>
