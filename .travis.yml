@@ -7,9 +7,13 @@ jdk:
     - oraclejdk8
     - oraclejdk7
     - openjdk7
+    - openjdk8
 
 before_install:
   - cd java
 
 script:
   - ant test
+
+notifications:
+    - email: false  # Desactivamos las notificaciones por email para evitar spam
