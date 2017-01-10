@@ -13,6 +13,8 @@ grant select, insert, update, delete, create, drop, references, index, alter,
         alter routine, execute, trigger, show view
     on `CreacionAdminVotaciones`.* to 'acme-manager'@'%';
 
+
+
 USE `CreacionAdminVotaciones`;
 
 -- MySQL dump 10.13  Distrib 5.5.29, for Win64 (x86)
@@ -43,10 +45,6 @@ CREATE TABLE `domain_entity` (
   `dtype` varchar(31) NOT NULL,
   `id` int(11) NOT NULL,
   `version` int(11) NOT NULL,
-  `survey_id` int(11) DEFAULT NULL,
-  `text` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `username` varchar(255) DEFAULT NULL,
   `census` int(11) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `end_date` datetime DEFAULT NULL,
@@ -55,6 +53,10 @@ CREATE TABLE `domain_entity` (
   `tipo` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `username_creator` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `survey_id` int(11) DEFAULT NULL,
+  `text` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_mjkjds1f2jnib0fgvfkg5a44h` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -66,7 +68,7 @@ CREATE TABLE `domain_entity` (
 
 LOCK TABLES `domain_entity` WRITE;
 /*!40000 ALTER TABLE `domain_entity` DISABLE KEYS */;
-INSERT INTO `domain_entity` VALUES ('Survey',1,0,NULL,NULL,NULL,NULL,1,'Indaga sobre las preferencias de los ciudadanos en los equipos de la ciudad','2016-06-02 12:00:00','41005','2016-05-02 12:00:00','Cerrado','Encuesta futbolística en Sevilla','Verde1'),('Question',2,0,1,'¿Cual es su equipo de fútbol favorito?',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('Question',3,0,1,'¿Prefiere a Sevilla o Betis?',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),('Question',4,0,1,'¿Tiene problemas mentales?',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `domain_entity` VALUES ('Survey',1,0,1,'Indaga sobre las preferencias de los ciudadanos en los equipos de la ciudad','2016-06-02 12:00:00','41005','2016-05-02 12:00:00','Cerrado','Encuesta futbolística en Sevilla','admin',NULL,NULL,NULL,NULL),('Question',2,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,'¿Cuál es su equipo de fútbol favorito?'),('Question',3,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,'¿Prefiere a Sevilla o Betis?'),('Question',4,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,'¿Tiene problemas mentales?'),('Survey',5,0,1,'Encuestas para conocer el número de coches de los individuos de la población','2018-02-02 12:00:00','11160','2018-01-01 12:00:00','Cerrado','Número de coches','admin',NULL,NULL,NULL,NULL),('Question',6,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,5,'¿Tienes un coche?'),('Question',7,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,5,'¿Tienes 2 coches?'),('Question',8,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,5,'¿Tienes 3 o mas coches?'),('Survey',9,0,1,'Pretendemos conocer si la gente cree que ya hemos superado la crisis','2017-04-11 12:00:00','11393','2016-03-01 12:00:00','Cerrado','Crisis','admin',NULL,NULL,NULL,NULL),('Question',10,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,9,'No'),('Question',11,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,9,'Sí'),('Survey',12,0,1,'¿Cree que las medidas implantadas en el Ayuntamiento de Madrid son correctas?','2017-01-10 12:00:00','41012','2016-12-12 12:00:00','Cerrado','Polución','Verde1',NULL,NULL,NULL,NULL),('Survey',13,0,1,'¿Cree que la tortilla debe contener cebolla?','2017-03-03 12:00:00','41012','2017-02-02 12:00:00','Cerrado','tortilla','raftrugon',NULL,NULL,NULL,NULL),('Question',14,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,9,'Debe llevar'),('Question',15,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,9,'no debe llevar'),('Survey',16,0,1,'Elegir posible posicin de los pilotos de la siguiente temporada de la F1','2017-04-04 12:00:00','41012','2017-04-04 12:00:00','Cerrado','coches','raftrugon',NULL,NULL,NULL,NULL),('Question',17,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,9,'Fernando alonso'),('Question',18,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,9,'vettel'),('UserAccount',32768,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'7545bb51a421283c44a02eb657c6b03b','raftrugon',NULL,NULL);
 /*!40000 ALTER TABLE `domain_entity` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -93,7 +95,7 @@ CREATE TABLE `domain_entity_questions` (
 
 LOCK TABLES `domain_entity_questions` WRITE;
 /*!40000 ALTER TABLE `domain_entity_questions` DISABLE KEYS */;
-INSERT INTO `domain_entity_questions` VALUES (1,2),(1,3),(1,4);
+INSERT INTO `domain_entity_questions` VALUES (1,2),(1,3),(1,4),(5,6),(5,7),(5,8),(9,10),(9,11),(13,14),(13,15),(16,17),(16,18);
 /*!40000 ALTER TABLE `domain_entity_questions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,6 +143,7 @@ CREATE TABLE `user_account_authorities` (
 
 LOCK TABLES `user_account_authorities` WRITE;
 /*!40000 ALTER TABLE `user_account_authorities` DISABLE KEYS */;
+INSERT INTO `user_account_authorities` VALUES (32768,'ADMIN');
 /*!40000 ALTER TABLE `user_account_authorities` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -153,4 +156,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-01-04 20:58:36
+-- Dump completed on 2017-01-10 17:49:20
