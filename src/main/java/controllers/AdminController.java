@@ -72,6 +72,7 @@ public class AdminController {
 	}
 
 	// Metodo para integrar con autenticación
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView save(UserAccount c, BindingResult binding,
 			HttpServletRequest request) throws IOException {
 		ModelAndView result = null;
