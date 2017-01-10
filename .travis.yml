@@ -7,8 +7,6 @@ jdk:
     - oraclejdk8
     - oraclejdk7
 
-install: ant deps
-
 sudo: false
 script:
   - mvn test -B
