@@ -245,25 +245,25 @@ public class SurveyService {
 	}
 	
 	public Collection<Survey> findSurveysFromSevilla(){
-		Collection<Survey> s = surveyRepository.findSurveysFromSevilla();
+		Collection<Survey> s = surveyRepository.findSurveysFromSevilla(LoginService.getPrincipal().getUsername());
 		Assert.notNull(s);
 		return s;
 	}
 	
 	public Collection<Survey> findSurveysAlreadyStarted(){
-		Collection<Survey> s = surveyRepository.findSurveysAlreadyStarted();
+		Collection<Survey> s = surveyRepository.findSurveysAlreadyStarted(LoginService.getPrincipal().getUsername());
 		Assert.notNull(s);
 		return s;
 	}
 	
 	public Double ratioOfSurveysWhichHaveNotStartedYet(){
-		Double r = surveyRepository.ratioOfSurveysWhichHaveNotStartedYet();
+		Double r = surveyRepository.ratioOfSurveysWhichHaveNotStartedYet(LoginService.getPrincipal().getUsername());
 		Assert.notNull(r);
 		return r;
 	}
 	
 	public Double averageOfQuestionsPerSurvey(){
-		Double a = surveyRepository.averageOfQuestionsPerSurvey();
+		Double a = surveyRepository.averageOfQuestionsPerSurvey(LoginService.getPrincipal().getUsername());
 		Assert.notNull(a);
 		return a;
 	}
