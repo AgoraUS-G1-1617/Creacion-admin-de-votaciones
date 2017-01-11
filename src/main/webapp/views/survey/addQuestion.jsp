@@ -30,6 +30,8 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
+<h1>Su votación acaba de ser generada. Creando preguntas...</h1>
+
 <div class="centro">
 	<form:form action="${actionURL}" modelAttribute="questio">
 
